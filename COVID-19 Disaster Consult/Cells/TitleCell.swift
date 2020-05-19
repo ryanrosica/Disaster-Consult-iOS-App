@@ -43,7 +43,7 @@ class TitleCell: CCell {
                maker.left.equalTo(self).inset(16)
                maker.top.equalTo(self).inset(16)
                maker.right.equalTo(self).inset(16)
-               maker.bottom.equalTo(self).inset(16)
+               maker.bottom.equalTo(self).inset(8)
            }
        }
 }

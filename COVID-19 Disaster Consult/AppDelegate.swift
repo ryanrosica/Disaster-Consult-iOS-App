@@ -11,25 +11,61 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    let tabBarController: CTabBarController = CTabBarController.init()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UIFont.familyNames.forEach({ familyName in
+            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+            print(familyName, fontNames)
+        })
+        
+        let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false)
+        homeController.title = "Disaster Consult | COVID- 19"
+        let homeNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
+        homeNav.navigationBar.barStyle = .black
+        homeNav.navigationBar.tintColor = .white
+        homeNav.title = "Home"
+        
+        let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true)
+        litController.title = "Disaster Consult | COVID- 19"
+        let litNav: CNavigationController = CNavigationController.init(rootViewController: litController)
+        litNav.navigationBar.barStyle = .black
+        litNav.navigationBar.tintColor = .white
+        litNav.title = "Literature"
+        
+        
+        
+        let resourcesNav: CNavigationController = CNavigationController.init(rootViewController: ResourcesController())
+        resourcesNav.navigationBar.barStyle = .black
+        resourcesNav.navigationBar.tintColor = .white
+        resourcesNav.title = "Resources"
+        
+        let aboutNav: CNavigationController = CNavigationController.init(rootViewController: AboutController())
+        aboutNav.navigationBar.barStyle = .black
+        aboutNav.navigationBar.tintColor = .white
+        aboutNav.title = "About"
+        
+        
+
+
+        tabBarController.setViewControllers([homeNav, litNav, resourcesNav, aboutNav], animated: true)
+        tabBarController.tabBar.tintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
+        if let tab = tabBarController.tabBar.items?[0]{
+            tab.image = #imageLiteral(resourceName: "icons8-home-30")
+        }
+        if let tab = tabBarController.tabBar.items?[1]{
+            tab.image = #imageLiteral(resourceName: "icons8-literature-30")
+        }
+        if let tab = tabBarController.tabBar.items?[2]{
+            tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
+        }
+        window?.rootViewController = tabBarController
         
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
+    
 
 }
 

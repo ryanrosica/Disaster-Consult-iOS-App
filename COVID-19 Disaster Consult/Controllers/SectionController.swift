@@ -75,6 +75,7 @@ extension SectionController: CTableViewDelegate {
             let webView = WebView()
                 webView.html = link.link.content
                 webView.pageTitle = link.link.title
+                webView.url = "https://www.disasterconsult.org/section/\(section.id)"
                 navigationController?.pushViewController(webView, animated: true)
         }
     }

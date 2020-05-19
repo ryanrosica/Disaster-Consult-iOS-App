@@ -1,21 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "lossy-page1-1200px-SIPI_Jelly_Beans_4.1.07.tiff.jpg",
       "idiom" : "universal",
+      "filename" : "icons8-about-30.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-about-60.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-about-90.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }

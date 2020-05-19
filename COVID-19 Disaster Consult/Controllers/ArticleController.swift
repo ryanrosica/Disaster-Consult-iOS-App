@@ -58,11 +58,13 @@ class ArticleController: CTableViewController {
     }
     
     @objc func fetch() {
+        //Presenter.toast(text: "Error")
+
         posts = [CCellObject]()
         self.posts.insert(TitleObject(title: self.viewTitle), at: 0)
+        self.page = nil
         get(page: nil)
         refreshControl.endRefreshing()
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,8 +76,9 @@ class ArticleController: CTableViewController {
         if page == "" {
             return
         }
+        
         guard let request: URLRequest = Session.makeUrlRequest(endpoint: self.endpoint, parameters: ["page": page ?? ""], method: .GET) else {
-            print("failed")
+            //Presenter.toast(text: "Error")
             return
         }
 
@@ -123,17 +126,14 @@ extension ArticleController: CTableViewDelegate {
         }
         let link : LinkObject? = self.tableView.data[0][indexPath.row] as? LinkObject
         if let url = URL(string: link?.link.url ?? "") {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            let safariView = SFSafariViewController(url: url, configuration: config)
-            safariView.preferredBarTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
-            present(safariView, animated: true)
+            present(Presenter.openSVC(url: url), animated: true)
         }
         else {
             if let description = link?.link.description {
                 let webView = WebView()
                 webView.html = description
                 webView.pageTitle = link?.link.title ?? ""
+                webView.url = "https://www.disasterconsult.org/literature/\(link?.link.id ?? "")"
                 navigationController?.pushViewController(webView, animated: true)
             }
         }
@@ -141,7 +141,7 @@ extension ArticleController: CTableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false) &&
-        indexPath.row == posts.count - 1 {
+        indexPath.row >= posts.count - 3 {
             fetchNextPage()
         }
     }

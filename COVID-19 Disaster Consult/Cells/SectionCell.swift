@@ -34,18 +34,25 @@ class SectionCell: CCell {
 
     override func commonInit() {
         super.commonInit()
+        
         self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        layoutMargins.right += 20
         self.selectionStyle = .none
+        
+        
         stackView = UIStackView.init(arrangedSubviews: [titleLbl, descriptionLbl])
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 3
+        
+        
         back.addSubview(stackView)
         back.clipsToBounds = true
         back.layer.cornerRadius = 10
         back.layer.borderWidth = 2
         back.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         addSubview(back)
+        
         updateConstraints()
     }
     
@@ -65,9 +72,9 @@ class SectionCell: CCell {
     override func updateConstraints() {
         super.updateConstraints()
         stackView.snp.makeConstraints { (maker) in
-            maker.left.equalTo(back).inset(8)
+            maker.left.equalTo(back).inset(16)
             maker.top.equalTo(back).inset(12)
-            maker.right.equalTo(back).inset(16)
+            maker.right.equalTo(back).inset(32)
             maker.bottom.equalTo(back).inset(12)
         }
         

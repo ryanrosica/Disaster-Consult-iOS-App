@@ -9,10 +9,13 @@
 import Foundation
 
 class TitleObject: CCellObject {
+    
     let title: String
-    init(title: String, cellType: AnyClass = TitleCell.self) {
+    var descrip: String = ""
+    
+    init(title: String, description: String = "", cellType: AnyClass = TitleCell.self) {
         self.title = title
         super.init(type: cellType)
-        
+        self.descrip = description
     }
 }

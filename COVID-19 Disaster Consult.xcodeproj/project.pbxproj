@@ -51,7 +51,6 @@
 		A42CED72243FEDC6006553D2 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F53243FE6030053A1BF /* SnapKit.framework */; };
 		A42CED73243FEDC6006553D2 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F53243FE6030053A1BF /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A4A54F15243FDEDA0053A1BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A54F14243FDEDA0053A1BF /* AppDelegate.swift */; };
-		A4A54F17243FDEDA0053A1BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A54F16243FDEDA0053A1BF /* SceneDelegate.swift */; };
 		A4A54F1C243FDEDA0053A1BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A54F1A243FDEDA0053A1BF /* Main.storyboard */; };
 		A4A54F1E243FDEDC0053A1BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4A54F1D243FDEDC0053A1BF /* Assets.xcassets */; };
 		A4A54F21243FDEDC0053A1BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A54F1F243FDEDC0053A1BF /* LaunchScreen.storyboard */; };
@@ -73,6 +72,12 @@
 		A4A54F59243FE74A0053A1BF /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A54F58243FE74A0053A1BF /* SwiftyJSON.swift */; };
 		A4A54F5B243FE83C0053A1BF /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A54F5A243FE83C0053A1BF /* Endpoints.swift */; };
 		A4A54F5D243FE8A10053A1BF /* LinkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A54F5C243FE8A10053A1BF /* LinkObject.swift */; };
+		A4AAFFE6247363CE00F26664 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AAFFE4247363CE00F26664 /* SwiftNotice.swift */; };
+		A4AAFFE7247363CE00F26664 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AAFFE5247363CE00F26664 /* Toast.swift */; };
+		A4AAFFE9247363FF00F26664 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AAFFE8247363FF00F26664 /* Presenter.swift */; };
+		A4AAFFEB24736AC300F26664 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AAFFEA24736AC300F26664 /* SceneDelegate.swift */; };
+		A4AAFFED24736DA100F26664 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AAFFEC24736DA100F26664 /* AboutController.swift */; };
+		A4AAFFEF24736F9D00F26664 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AAFFEE24736F9D00F26664 /* TextCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -129,9 +134,8 @@
 		5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		A42CED67243FEB37006553D2 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A42CED69243FED13006553D2 /* PMKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKFoundation.framework; path = Carthage/Build/iOS/PMKFoundation.framework; sourceTree = SOURCE_ROOT; };
-		A4A54F11243FDEDA0053A1BF /* COVID-19 Disaster Consult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COVID-19 Disaster Consult.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4A54F11243FDEDA0053A1BF /* Disaster Consult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Disaster Consult.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A54F14243FDEDA0053A1BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A4A54F16243FDEDA0053A1BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A4A54F1B243FDEDA0053A1BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4A54F1D243FDEDC0053A1BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4A54F20243FDEDC0053A1BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -157,6 +161,12 @@
 		A4A54F5A243FE83C0053A1BF /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		A4A54F5C243FE8A10053A1BF /* LinkObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkObject.swift; sourceTree = "<group>"; };
 		A4A54F5E243FE9D20053A1BF /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = SOURCE_ROOT; };
+		A4AAFFE4247363CE00F26664 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
+		A4AAFFE5247363CE00F26664 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		A4AAFFE8247363FF00F26664 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		A4AAFFEA24736AC300F26664 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A4AAFFEC24736DA100F26664 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
+		A4AAFFEE24736F9D00F26664 /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +206,7 @@
 				5F6277C22457454E00499F40 /* LitCell.swift */,
 				5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */,
 				5F6277CD2457741D00499F40 /* HeaderCell.swift */,
+				A4AAFFEE24736F9D00F26664 /* TextCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -238,7 +249,7 @@
 		A4A54F12243FDEDA0053A1BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A4A54F11243FDEDA0053A1BF /* COVID-19 Disaster Consult.app */,
+				A4A54F11243FDEDA0053A1BF /* Disaster Consult.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,9 +257,9 @@
 		A4A54F13243FDEDA0053A1BF /* COVID-19 Disaster Consult */ = {
 			isa = PBXGroup;
 			children = (
+				A4AAFFEA24736AC300F26664 /* SceneDelegate.swift */,
 				5F6277D124578F3B00499F40 /* html.html */,
 				A4A54F14243FDEDA0053A1BF /* AppDelegate.swift */,
-				A4A54F16243FDEDA0053A1BF /* SceneDelegate.swift */,
 				A4A54F22243FDEDC0053A1BF /* Info.plist */,
 				A4A54F1D243FDEDC0053A1BF /* Assets.xcassets */,
 				5F8C8FFE244687E500241B7D /* Objects */,
@@ -322,6 +333,7 @@
 				5F062FB52450A87F009B7EA5 /* SectionsController.swift */,
 				5F6277C9245751E100499F40 /* SectionController.swift */,
 				5F6277CB24576B1B00499F40 /* WebView.swift */,
+				A4AAFFEC24736DA100F26664 /* AboutController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -361,9 +373,20 @@
 		A4A54F57243FE7320053A1BF /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				A4AAFFE32473639B00F26664 /* Toast */,
 				A4A54F58243FE74A0053A1BF /* SwiftyJSON.swift */,
+				A4AAFFE8247363FF00F26664 /* Presenter.swift */,
 			);
 			path = Libraries;
+			sourceTree = "<group>";
+		};
+		A4AAFFE32473639B00F26664 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				A4AAFFE4247363CE00F26664 /* SwiftNotice.swift */,
+				A4AAFFE5247363CE00F26664 /* Toast.swift */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,7 +407,7 @@
 			);
 			name = "COVID-19 Disaster Consult";
 			productName = "COVID-19 Disaster Consult";
-			productReference = A4A54F11243FDEDA0053A1BF /* COVID-19 Disaster Consult.app */;
+			productReference = A4A54F11243FDEDA0053A1BF /* Disaster Consult.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -464,6 +487,7 @@
 				A4A54F37243FE00C0053A1BF /* CViewController.swift in Sources */,
 				A4A54F5D243FE8A10053A1BF /* LinkObject.swift in Sources */,
 				5F6277CE2457741D00499F40 /* HeaderCell.swift in Sources */,
+				A4AAFFEF24736F9D00F26664 /* TextCell.swift in Sources */,
 				5F8C8FFD2446821400241B7D /* TitleObject.swift in Sources */,
 				5F8C8FF72446713600241B7D /* ResourcesController.swift in Sources */,
 				A4A54F44243FE1580053A1BF /* CCellObjectDatasource.swift in Sources */,
@@ -474,6 +498,7 @@
 				A4A54F4C243FE2DC0053A1BF /* NewsCell.swift in Sources */,
 				A4A54F3C243FE0860053A1BF /* ArticleController.swift in Sources */,
 				5F8C90032446894F00241B7D /* CategoryCell.swift in Sources */,
+				A4AAFFED24736DA100F26664 /* AboutController.swift in Sources */,
 				5F6277CA245751E100499F40 /* SectionController.swift in Sources */,
 				5F062FB62450A87F009B7EA5 /* SectionsController.swift in Sources */,
 				5F062FBA2450AABB009B7EA5 /* SectionObject.swift in Sources */,
@@ -481,7 +506,9 @@
 				5F8C90012446884300241B7D /* CategoryObject.swift in Sources */,
 				5F062FB82450AA75009B7EA5 /* Section.swift in Sources */,
 				A4A54F50243FE42B0053A1BF /* Link.swift in Sources */,
+				A4AAFFEB24736AC300F26664 /* SceneDelegate.swift in Sources */,
 				5F8C8FF92446730300241B7D /* Category.swift in Sources */,
+				A4AAFFE7247363CE00F26664 /* Toast.swift in Sources */,
 				5F6277C32457454E00499F40 /* LitCell.swift in Sources */,
 				5FCDC6ED2440ECB10065AC50 /* TitleCell.swift in Sources */,
 				A4A54F48243FE1EE0053A1BF /* CCell.swift in Sources */,
@@ -490,7 +517,8 @@
 				A4A54F59243FE74A0053A1BF /* SwiftyJSON.swift in Sources */,
 				A4A54F46243FE1720053A1BF /* CCellObject.swift in Sources */,
 				A4A54F5B243FE83C0053A1BF /* Endpoints.swift in Sources */,
-				A4A54F17243FDEDA0053A1BF /* SceneDelegate.swift in Sources */,
+				A4AAFFE6247363CE00F26664 /* SwiftNotice.swift in Sources */,
+				A4AAFFE9247363FF00F26664 /* Presenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,14 +669,15 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "COVID-19 Disaster Consult/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.COVID-19-Disaster-Consult";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Disaster Consult";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -663,14 +692,15 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "COVID-19 Disaster Consult/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.COVID-19-Disaster-Consult";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Disaster Consult";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

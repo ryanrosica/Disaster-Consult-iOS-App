@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -37,9 +38,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             resourcesNav.navigationBar.tintColor = .white
             resourcesNav.title = "Resources"
             
+            let aboutNav: CNavigationController = CNavigationController.init(rootViewController: AboutController())
+           aboutNav.navigationBar.barStyle = .black
+           aboutNav.navigationBar.tintColor = .white
+           aboutNav.title = "About"
 
-
-            tabBarController.setViewControllers([homeNav, litNav, resourcesNav], animated: true)
+            tabBarController.setViewControllers([homeNav, litNav, resourcesNav, aboutNav], animated: true)
             tabBarController.tabBar.tintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
             if let tab = tabBarController.tabBar.items?[0]{
                 tab.image = #imageLiteral(resourceName: "icons8-home-30")
