@@ -1,0 +1,4 @@
+github "PromiseKit/Foundation"
+github "mxcl/PromiseKit"
+github "SnapKit/SnapKit"
+github "onevcat/Kingfisher"

@@ -11,13 +11,49 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    let tabBarController: CTabBarController = CTabBarController.init()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false)
+            homeController.title = "Disaster Consult | COVID- 19"
+            let homeNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
+            homeNav.navigationBar.barStyle = .black
+            homeNav.navigationBar.tintColor = .white
+            homeNav.title = "Home"
+            
+            let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true)
+            litController.title = "Disaster Consult | COVID- 19"
+            let litNav: CNavigationController = CNavigationController.init(rootViewController: litController)
+            litNav.navigationBar.barStyle = .black
+            litNav.navigationBar.tintColor = .white
+            litNav.title = "Literature"
+            
+            
+            
+            let resourcesNav: CNavigationController = CNavigationController.init(rootViewController: ResourcesController())
+            resourcesNav.navigationBar.barStyle = .black
+            resourcesNav.navigationBar.tintColor = .white
+            resourcesNav.title = "Resources"
+            
+
+
+            tabBarController.setViewControllers([homeNav, litNav, resourcesNav], animated: true)
+            tabBarController.tabBar.tintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
+            if let tab = tabBarController.tabBar.items?[0]{
+                tab.image = #imageLiteral(resourceName: "icons8-home-30")
+            }
+            if let tab = tabBarController.tabBar.items?[1]{
+                tab.image = #imageLiteral(resourceName: "icons8-literature-30")
+            }
+            if let tab = tabBarController.tabBar.items?[2]{
+                tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
+            }
+            window.rootViewController = tabBarController
+            self.window = window
+            window.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
