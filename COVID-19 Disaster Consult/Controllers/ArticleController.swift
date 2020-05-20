@@ -19,6 +19,7 @@ class ArticleController: CTableViewController {
     var cellType: AnyClass
     var posts: [CCellObject] = [CCellObject]()
     var page: String? = nil
+    var reloading: Bool = false
     
     init(endpoint: String, dataJSONType: String, title: String, cellType: AnyClass, seperators: Bool) {
         self.endpoint = endpoint
@@ -73,10 +74,11 @@ class ArticleController: CTableViewController {
     
     
     func get(page: String?) {
-        if page == "" {
+        if page == "" || reloading == true {
             return
         }
-        
+        reloading = true
+
         guard let request: URLRequest = Session.makeUrlRequest(endpoint: self.endpoint, parameters: ["page": page ?? ""], method: .GET) else {
             //Presenter.toast(text: "Error")
             return
@@ -99,7 +101,7 @@ class ArticleController: CTableViewController {
             
             self.tableView.data = [self.posts]
             self.tableView.reloadData()
-            
+            self.reloading = false
         }.catch { error in
             print(error)
         }
