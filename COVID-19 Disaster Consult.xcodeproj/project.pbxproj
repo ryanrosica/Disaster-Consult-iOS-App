@@ -400,6 +400,7 @@
 				A4A54F0E243FDEDA0053A1BF /* Frameworks */,
 				A4A54F0F243FDEDA0053A1BF /* Resources */,
 				A42CED6D243FEDC2006553D2 /* Embed Frameworks */,
+				A42225ED24747DBA008ADA45 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -474,6 +475,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A42225ED24747DBA008ADA45 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/PMKFoundation.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A4A54F0D243FDEDA0053A1BF /* Sources */ = {
@@ -663,7 +688,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7D6V9TFU6X;
+				CURRENT_PROJECT_VERSION = 1000;
+				DEVELOPMENT_TEAM = 7T33HV9FJ8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -674,7 +700,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.COVID-19-Disaster-Consult";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.Disaster-Consult";
 				PRODUCT_NAME = "Disaster Consult";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -686,7 +713,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7D6V9TFU6X;
+				CURRENT_PROJECT_VERSION = 1000;
+				DEVELOPMENT_TEAM = 7T33HV9FJ8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -697,7 +725,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.COVID-19-Disaster-Consult";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.Disaster-Consult";
 				PRODUCT_NAME = "Disaster Consult";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
