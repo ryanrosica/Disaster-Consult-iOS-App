@@ -103,6 +103,7 @@ class ArticleController: CTableViewController {
             self.tableView.reloadData()
             self.reloading = false
         }.catch { error in
+            self.reloading = false
             print(error)
         }
     }
