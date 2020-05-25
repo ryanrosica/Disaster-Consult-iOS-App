@@ -26,6 +26,7 @@ class Presenter: NSObject {
         return safariView
     }
     
+
     
     static func showShare(object: AnyObject) -> UIViewController {
         let objectsToShare = [object]
