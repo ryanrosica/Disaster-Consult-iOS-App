@@ -69,7 +69,7 @@ extension AboutController: CTableViewDelegate {
             
             if textObj.title == "Our Website" {
                 if let url: URL = URL.init(string: "https://www.disasterconsult.org/home") {
-                    self.present(Presenter.openSVC(url: url), animated: true)
+                    UIApplication.shared.open(url)
                 }
             }
             
