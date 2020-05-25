@@ -123,7 +123,6 @@ extension ArticleController: CTableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
 
-        
         if (indexPath.row == 0) {
             return
         }
