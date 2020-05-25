@@ -17,6 +17,7 @@ class CategoryCell: CCell {
         lbl.font = Fonts.caption
         lbl.numberOfLines = 0
         lbl.backgroundColor = #colorLiteral(red: 0.7521713376, green: 0.8826304078, blue: 0.9193754196, alpha: 1)
+        lbl.textColor = .black
         lbl.textAlignment =  .center
         lbl.layer.cornerRadius = 10
         lbl.layer.masksToBounds = true

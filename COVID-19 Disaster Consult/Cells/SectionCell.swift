@@ -23,7 +23,7 @@ class SectionCell: CCell {
      //lbl.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         lbl.font = Fonts.smallCaption
         lbl.numberOfLines = 2
-        lbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        lbl.textColor = .gray
         
         return lbl
      }()
@@ -50,7 +50,7 @@ class SectionCell: CCell {
         back.clipsToBounds = true
         back.layer.cornerRadius = 10
         back.layer.borderWidth = 2
-        back.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        back.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         addSubview(back)
         
         updateConstraints()

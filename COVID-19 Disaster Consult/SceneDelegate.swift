@@ -44,7 +44,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            aboutNav.title = "About"
 
             tabBarController.setViewControllers([homeNav, litNav, resourcesNav, aboutNav], animated: true)
-            tabBarController.tabBar.tintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
             if let tab = tabBarController.tabBar.items?[0]{
                 tab.image = #imageLiteral(resourceName: "icons8-home-30")
             }
