@@ -23,10 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false)
         homeController.title = "Disaster Consult | COVID- 19"
-        let homeNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
-        homeNav.navigationBar.barStyle = .black
-        homeNav.navigationBar.tintColor = .white
-        homeNav.title = "Home"
+        let newsNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
+        newsNav.navigationBar.barStyle = .black
+        newsNav.navigationBar.tintColor = .white
+        newsNav.title = "Home"
         
         let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true)
         litController.title = "Disaster Consult | COVID- 19"
@@ -50,15 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 
 
-        tabBarController.setViewControllers([homeNav, litNav, resourcesNav, aboutNav], animated: true)
+        tabBarController.setViewControllers([resourcesNav, newsNav, litNav, aboutNav], animated: true)
         if let tab = tabBarController.tabBar.items?[0]{
-            tab.image = #imageLiteral(resourceName: "icons8-home-30")
+            tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
         }
         if let tab = tabBarController.tabBar.items?[1]{
-            tab.image = #imageLiteral(resourceName: "icons8-literature-30")
+            tab.image = #imageLiteral(resourceName: "icons8-news-30")
         }
         if let tab = tabBarController.tabBar.items?[2]{
-            tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
+            tab.image = #imageLiteral(resourceName: "icons8-literature-30")
         }
         window?.rootViewController = tabBarController
         
