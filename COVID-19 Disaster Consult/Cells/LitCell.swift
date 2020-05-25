@@ -31,11 +31,28 @@ class LitCell: CCell {
         return lbl
     }()
     
+    let dateAndTimeLabel: UILabel = {
+        let lbl: UILabel = UILabel.init()
+        lbl.font = Fonts.smallCaption
+        lbl.numberOfLines = 0
+        lbl.textColor = .gray
+        return lbl
+    }()
+    
+    let sourceLabel: UILabel = {
+        let lbl: UILabel = UILabel.init()
+        lbl.font = Fonts.smallCaption
+        lbl.textColor = .gray
+        lbl.numberOfLines = 0
+        return lbl
+    }()
+    
+    
     var stackView: UIStackView!
     
     override func commonInit() {
         super.commonInit()
-        stackView = UIStackView.init(arrangedSubviews: [titleLbl, descriptionLbl])
+        stackView = UIStackView.init(arrangedSubviews: [titleLbl, descriptionLbl, sourceLabel, dateAndTimeLabel])
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 10
@@ -49,7 +66,18 @@ class LitCell: CCell {
         if let link: LinkObject = object as? LinkObject {
             titleLbl.text = link.link.title
             descriptionLbl.text = link.link.excerpt
+            sourceLabel.text = link.link.url
+            let RFC3339DateFormatter = DateFormatter()
+            RFC3339DateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            RFC3339DateFormatter.timeZone = .autoupdatingCurrent
+            let date = RFC3339DateFormatter.date(from: link.link.last_updated)
+            let newDateFormatter = DateFormatter()
+            newDateFormatter.dateFormat = "MM/dd/yy"
+            if let date = date {
+                dateAndTimeLabel.text = "\(newDateFormatter.string(from: date))"
+            }
         }
+        
         if let category: CategoryObject = object as? CategoryObject {
             titleLbl.text = category.category.title
          }
