@@ -49,7 +49,7 @@ public struct Link: Thing {
         self.source_url = json["source_url"].string ?? ""
         self.content = json["content"].string ?? ""
         self.excerpt = json["excerpt"].string ?? ""
-
+        
     }
     
 }

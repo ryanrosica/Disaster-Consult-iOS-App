@@ -29,4 +29,7 @@ struct Endpoints {
     static func section(id: String) -> String {
         return "/section/\(id)"
     }
+    static func tableOfContents() -> String {
+        return "/contents"
+    }
 }

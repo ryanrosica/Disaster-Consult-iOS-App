@@ -9,10 +9,11 @@
 import Foundation
 
 class SectionObject: CCellObject {
-    let section: Section
+    var section: Section
+    var bold = false
     
-    init (section: Section) {
+    init (section: Section, cellType: AnyClass = SectionCell.self) {
         self.section = section
-        super.init(type: SectionCell.self)
+        super.init(type: cellType)
     }
 }

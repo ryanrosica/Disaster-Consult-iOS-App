@@ -17,12 +17,15 @@ class ResourcesController: CTableViewController {
         self.title = "Resources"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.title = "Disaster Consult | COVID- 19"
+        
         fetch()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+ 
         deselectAll()
     }
     

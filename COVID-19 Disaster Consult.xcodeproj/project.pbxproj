@@ -22,6 +22,7 @@
 		5F8C8FFD2446821400241B7D /* TitleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C8FFC2446821400241B7D /* TitleObject.swift */; };
 		5F8C90012446884300241B7D /* CategoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C90002446884300241B7D /* CategoryObject.swift */; };
 		5F8C90032446894F00241B7D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C90022446894F00241B7D /* CategoryCell.swift */; };
+		5FC70634247C21A000AFC9C2 /* FABTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC70633247C21A000AFC9C2 /* FABTabBarController.swift */; };
 		5FCDC6D524400DAA0065AC50 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCDC6D324400D360065AC50 /* Montserrat-Black.ttf */; };
 		5FCDC6D624400DAA0065AC50 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCDC6D124400D360065AC50 /* Montserrat-BlackItalic.ttf */; };
 		5FCDC6D724400DAA0065AC50 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCDC6C524400D340065AC50 /* Montserrat-Bold.ttf */; };
@@ -41,6 +42,8 @@
 		5FCDC6E524400DAA0065AC50 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCDC6CC24400D350065AC50 /* Montserrat-Thin.ttf */; };
 		5FCDC6E624400DAA0065AC50 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCDC6D024400D350065AC50 /* Montserrat-ThinItalic.ttf */; };
 		5FCDC6ED2440ECB10065AC50 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */; };
+		5FDBDF29247ED4BF001F9130 /* TableOfContentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDBDF28247ED4BF001F9130 /* TableOfContentsController.swift */; };
+		5FDBDF2D247EE45A001F9130 /* SectionCellSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDBDF2C247EE45A001F9130 /* SectionCellSmall.swift */; };
 		A42CED68243FEB37006553D2 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CED67243FEB37006553D2 /* HTTPMethod.swift */; };
 		A42CED6B243FEDC2006553D2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F5E243FE9D20053A1BF /* Kingfisher.framework */; };
 		A42CED6C243FEDC2006553D2 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F5E243FE9D20053A1BF /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -113,6 +116,7 @@
 		5F8C8FFC2446821400241B7D /* TitleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleObject.swift; sourceTree = "<group>"; };
 		5F8C90002446884300241B7D /* CategoryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryObject.swift; sourceTree = "<group>"; };
 		5F8C90022446894F00241B7D /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		5FC70633247C21A000AFC9C2 /* FABTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FABTabBarController.swift; sourceTree = "<group>"; };
 		5FCDC6C324400D330065AC50 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		5FCDC6C424400D330065AC50 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
 		5FCDC6C524400D340065AC50 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 		5FCDC6D324400D360065AC50 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		5FCDC6D424400D360065AC50 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		5FDBDF28247ED4BF001F9130 /* TableOfContentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfContentsController.swift; sourceTree = "<group>"; };
+		5FDBDF2C247EE45A001F9130 /* SectionCellSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCellSmall.swift; sourceTree = "<group>"; };
 		A42CED67243FEB37006553D2 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A42CED69243FED13006553D2 /* PMKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKFoundation.framework; path = Carthage/Build/iOS/PMKFoundation.framework; sourceTree = SOURCE_ROOT; };
 		A4A54F11243FDEDA0053A1BF /* Disaster Consult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Disaster Consult.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +208,7 @@
 			children = (
 				5F8C90022446894F00241B7D /* CategoryCell.swift */,
 				5F062FBB2450AFCF009B7EA5 /* SectionCell.swift */,
+				5FDBDF2C247EE45A001F9130 /* SectionCellSmall.swift */,
 				A4A54F4B243FE2DC0053A1BF /* NewsCell.swift */,
 				5F6277C22457454E00499F40 /* LitCell.swift */,
 				5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */,
@@ -328,12 +335,14 @@
 		A4A54F3A243FE07B0053A1BF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5FC70633247C21A000AFC9C2 /* FABTabBarController.swift */,
 				A4A54F3B243FE0860053A1BF /* ArticleController.swift */,
 				5F8C8FF62446713600241B7D /* ResourcesController.swift */,
 				5F062FB52450A87F009B7EA5 /* SectionsController.swift */,
 				5F6277C9245751E100499F40 /* SectionController.swift */,
 				5F6277CB24576B1B00499F40 /* WebView.swift */,
 				A4AAFFEC24736DA100F26664 /* AboutController.swift */,
+				5FDBDF28247ED4BF001F9130 /* TableOfContentsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -400,7 +409,6 @@
 				A4A54F0E243FDEDA0053A1BF /* Frameworks */,
 				A4A54F0F243FDEDA0053A1BF /* Resources */,
 				A42CED6D243FEDC2006553D2 /* Embed Frameworks */,
-				A42225ED24747DBA008ADA45 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -476,30 +484,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A42225ED24747DBA008ADA45 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/PMKFoundation.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		A4A54F0D243FDEDA0053A1BF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -518,18 +502,21 @@
 				A4A54F44243FE1580053A1BF /* CCellObjectDatasource.swift in Sources */,
 				A4A54F2D243FDF420053A1BF /* Session.swift in Sources */,
 				5F6277CC24576B1B00499F40 /* WebView.swift in Sources */,
+				5FC70634247C21A000AFC9C2 /* FABTabBarController.swift in Sources */,
 				A4A54F3E243FE0A20053A1BF /* CTableViewController.swift in Sources */,
 				A42CED68243FEB37006553D2 /* HTTPMethod.swift in Sources */,
 				A4A54F4C243FE2DC0053A1BF /* NewsCell.swift in Sources */,
 				A4A54F3C243FE0860053A1BF /* ArticleController.swift in Sources */,
 				5F8C90032446894F00241B7D /* CategoryCell.swift in Sources */,
 				A4AAFFED24736DA100F26664 /* AboutController.swift in Sources */,
+				5FDBDF2D247EE45A001F9130 /* SectionCellSmall.swift in Sources */,
 				5F6277CA245751E100499F40 /* SectionController.swift in Sources */,
 				5F062FB62450A87F009B7EA5 /* SectionsController.swift in Sources */,
 				5F062FBA2450AABB009B7EA5 /* SectionObject.swift in Sources */,
 				A4A54F39243FE0530053A1BF /* CNavigationController.swift in Sources */,
 				5F8C90012446884300241B7D /* CategoryObject.swift in Sources */,
 				5F062FB82450AA75009B7EA5 /* Section.swift in Sources */,
+				5FDBDF29247ED4BF001F9130 /* TableOfContentsController.swift in Sources */,
 				A4A54F50243FE42B0053A1BF /* Link.swift in Sources */,
 				A4AAFFEB24736AC300F26664 /* SceneDelegate.swift in Sources */,
 				5F8C8FF92446730300241B7D /* Category.swift in Sources */,
@@ -689,7 +676,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1000;
-				DEVELOPMENT_TEAM = 7T33HV9FJ8;
+				DEVELOPMENT_TEAM = 7D6V9TFU6X;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -701,7 +688,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.Disaster-Consult";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.Disaster-Consult-Ryan";
 				PRODUCT_NAME = "Disaster Consult";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -714,7 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1000;
-				DEVELOPMENT_TEAM = 7T33HV9FJ8;
+				DEVELOPMENT_TEAM = 7D6V9TFU6X;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -726,7 +713,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.Disaster-Consult";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DisasterConsult.Disaster-Consult-Ryan";
 				PRODUCT_NAME = "Disaster Consult";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

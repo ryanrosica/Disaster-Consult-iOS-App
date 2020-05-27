@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SectionCell: CCell {
+class SectionCellSmall: CCell {
+    var bold = false
     
     let titleLbl: UILabel = {
         let lbl: UILabel = UILabel.init()
         //lbl.font = UIFont.systemFont(ofSize: 28, weight: .bold)
-        lbl.font = Fonts.smallTitle
+        lbl.font = Fonts.caption
         lbl.numberOfLines = 0
         lbl.textAlignment =  .left
         return lbl
@@ -37,7 +38,6 @@ class SectionCell: CCell {
         
         self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         layoutMargins.right += 20
-        self.selectionStyle = .none
         
         
         stackView = UIStackView.init(arrangedSubviews: [titleLbl, descriptionLbl])
@@ -48,9 +48,7 @@ class SectionCell: CCell {
         
         back.addSubview(stackView)
         back.clipsToBounds = true
-        back.layer.cornerRadius = 10
-        back.layer.borderWidth = 2
-        back.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+
         addSubview(back)
         
         updateConstraints()
@@ -63,11 +61,17 @@ class SectionCell: CCell {
             titleLbl.text = section.section.title
 
             descriptionLbl.text = section.section.description
+            
+            if (section.bold) {
+                titleLbl.font = Fonts.smallTitle
+            }
         }
         else if let link: LinkObject = object as? LinkObject {
             titleLbl.text = link.link.title
             descriptionLbl.text = link.link.description
         }
+        
+
     }
     
     override func updateConstraints() {

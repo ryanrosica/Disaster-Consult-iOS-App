@@ -55,7 +55,17 @@ class SectionController: CTableViewController {
             print(error)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+
+
+    }
+    
 }
+
+
 
 
 extension SectionController: CTableViewDelegate {
@@ -75,7 +85,9 @@ extension SectionController: CTableViewDelegate {
             let webView = WebView()
                 webView.html = link.link.content
                 webView.pageTitle = link.link.title
+                webView.id = section.id
                 webView.url = "https://www.disasterconsult.org/section/\(section.id)"
+                webView.tableOfContentsVisible = true
                 navigationController?.pushViewController(webView, animated: true)
         }
     }

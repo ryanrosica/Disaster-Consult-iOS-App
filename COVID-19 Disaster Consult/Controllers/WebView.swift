@@ -10,16 +10,51 @@ import UIKit
 import WebKit
 import SnapKit
 class WebView: UIViewController {
-    
     var html: String = ""
     var pageTitle: String = ""
     var url: String = ""
-    
+    var id = ""
+    var tableOfContentsVisible = false
     let webView: WKWebView = {
         let view = WKWebView()
         
         return view
     }()
+    
+    
+    
+    func makeTableOfContentsView() {
+        if (tableOfContentsVisible) {
+            let tableOfcontentsButton = UIButton()
+            tableOfcontentsButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            tableOfcontentsButton.setTitleColor(UIColor.black, for: .normal)
+
+            tableOfcontentsButton.setTitle("Table Of Contents ☰", for: .normal)
+            tableOfcontentsButton.addTarget(self, action: #selector(contentsPressed), for: .touchUpInside)
+            
+            self.view.addSubview(tableOfcontentsButton)
+            tableOfcontentsButton.translatesAutoresizingMaskIntoConstraints = false
+            if #available(iOS 11.0, *) {
+                let guide = self.view!
+                tableOfcontentsButton.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+                tableOfcontentsButton.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+                tableOfcontentsButton.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+                tableOfcontentsButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            }
+        }
+
+    }
+    
+    
+    @objc func contentsPressed() {
+        let contentsController = TableOfContentsController(selectedID: id, completion: {controllers in
+            self.navigationController?.setViewControllers(controllers, animated: true)
+        })
+        let navController = CNavigationController(rootViewController: contentsController)
+            
+        
+        self.present(navController, animated: true, completion: nil)
+    }
     
     override func loadView() {
         if let htmlFile = Bundle.main.path(forResource: "html", ofType: "html") {
@@ -31,6 +66,7 @@ class WebView: UIViewController {
             }
         }
         view = webView
+        makeTableOfContentsView()
         self.title = "Disaster Consult | COVID- 19"
     }
     

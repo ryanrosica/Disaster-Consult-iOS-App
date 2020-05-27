@@ -34,7 +34,9 @@ class CategoryCell: CCell {
     override func update(object: CCellObject) {
         super.update(object: object)
         if let category: CategoryObject = object as? CategoryObject {
+   
             titleLbl.text = category.category.title
+
          }
     
     }
