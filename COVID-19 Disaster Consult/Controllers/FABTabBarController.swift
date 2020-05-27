@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class FABTabBarController: CTabBarController, ConstraintRelatableTarget {
-    static let buttonWidth: CGFloat = 70
+    static let buttonWidth: CGFloat = 55
     
     let floatingButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -24,8 +24,8 @@ class FABTabBarController: CTabBarController, ConstraintRelatableTarget {
         button.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         button.tintColor = .white
         button.titleLabel?.font = Fonts.smallCaption
-        button.setTitle("Feedback", for: .normal)
-        //button.setImage(#imageLiteral(resourceName: "icons8-feedback-30"), for: .normal)
+        //button.setTitle("Feedback", for: .normal)
+        button.setImage(#imageLiteral(resourceName: "icons8-feedback-30"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
