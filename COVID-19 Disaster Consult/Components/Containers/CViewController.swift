@@ -29,6 +29,12 @@ class CViewController: UIViewController {
         commonInit()
     }
     
-    func commonInit() {}
+    func commonInit() {
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            view.backgroundColor = UIColor.white
+        }
+    }
     
 }
