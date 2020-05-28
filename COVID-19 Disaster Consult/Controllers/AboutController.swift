@@ -19,6 +19,7 @@ class AboutController: CTableViewController {
         self.title = "Disaster Consult | COVID- 19"
         self.tabBarItem.title = "About"
         self.tabBarItem.image = UIImage.init(named: "about") ?? UIImage()
+        self.view.backgroundColor = UIColor.groupTableViewBackground
         loadData()
     }
     
