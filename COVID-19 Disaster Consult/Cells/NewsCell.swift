@@ -51,8 +51,8 @@ class NewsCell: CCell {
     let sourceLabel: UILabel = {
         let lbl: UILabel = UILabel.init()
         lbl.font = Fonts.smallCaption
-        lbl.textColor = .gray
-        lbl.numberOfLines = 0
+        lbl.textColor = .systemBlue
+        lbl.numberOfLines = 1
         return lbl
     }()
     
@@ -78,7 +78,6 @@ class NewsCell: CCell {
         if let link: LinkObject = object as? LinkObject {
             imageBox.kf.setImage(with: URL(string: link.link.source_url))
             titleLbl.text = link.link.title
-            print(link.link.author)
 
             let RFC3339DateFormatter = DateFormatter()
             RFC3339DateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -89,7 +88,7 @@ class NewsCell: CCell {
             if let date = date {
                 dateAndTimeLabel.text = "\(newDateFormatter.string(from: date))"
             }
-            sourceLabel.text = link.link.url
+            sourceLabel.text = cleanURL(link.link.url)
 
             let newDescription = NSMutableAttributedString(string: link.link.description)
             let style = NSMutableParagraphStyle()
@@ -101,6 +100,10 @@ class NewsCell: CCell {
         if let category: CategoryObject = object as? CategoryObject {
             titleLbl.text = category.category.title
          }
+    }
+    
+    func cleanURL(_ url: String) -> String {
+        return url.replacingOccurrences(of: "http://", with: "").replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "www.", with: "")
     }
     
     override func updateConstraints() {
