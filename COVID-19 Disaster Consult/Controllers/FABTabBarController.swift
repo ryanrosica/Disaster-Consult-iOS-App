@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 class FABTabBarController: CTabBarController, ConstraintRelatableTarget {
+    
     static let buttonWidth: CGFloat = 55
     
     let floatingButton: UIButton = {
@@ -24,7 +25,6 @@ class FABTabBarController: CTabBarController, ConstraintRelatableTarget {
         button.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         button.tintColor = .white
         button.titleLabel?.font = Fonts.smallCaption
-        //button.setTitle("Feedback", for: .normal)
         button.setImage(#imageLiteral(resourceName: "icons8-feedback-30"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
@@ -36,34 +36,20 @@ class FABTabBarController: CTabBarController, ConstraintRelatableTarget {
         safariController.providesPresentationContextTransitionStyle = true
         safariController.modalPresentationStyle = .pageSheet
         self.present(safariController, animated: true, completion: nil)
-
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.insertSubview(floatingButton, belowSubview: self.tabBar)
+        
         floatingButton.translatesAutoresizingMaskIntoConstraints = false
         floatingButton.snp.makeConstraints { maker in
             maker.height.equalTo(FABTabBarController.buttonWidth)
             maker.width.equalTo(FABTabBarController.buttonWidth)
             maker.right.equalTo(self.view).inset(16)
-            maker.bottom.equalTo(self.view).inset(100)
+            maker.bottom.equalTo(self.tabBar).inset(UIDevice.current.userInterfaceIdiom == .pad ? FABTabBarController.buttonWidth + 16 : 100)
         }
-        
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
