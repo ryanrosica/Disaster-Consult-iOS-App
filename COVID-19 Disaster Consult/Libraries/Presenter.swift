@@ -18,7 +18,6 @@ class Presenter: NSObject {
     
     static func openSVC(url: URL) -> UIViewController {
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
         
         
         let safariView = SFSafariViewController(url: url, configuration: config)
