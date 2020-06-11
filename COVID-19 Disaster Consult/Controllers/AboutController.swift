@@ -10,10 +10,9 @@ import UIKit
 import PromiseKit
 
 class AboutController: DisasterPageViewController {
-    var site: Site
-    init(site: Site) {
-        self.site = site
-        super.init(title: site.title, style: .grouped)
+
+    init() {
+        super.init(style: .grouped)
         tableView.setDelegate(self)
         tableView.separatorStyle = .singleLine
         self.title = "About Us"
@@ -69,17 +68,17 @@ extension AboutController: CTableViewDelegate {
         if let textObj: TitleObject = object as? TitleObject {
             
             if textObj.title == "Our Website" {
-                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(site.slug)/home") {
+                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(Session.shared.slug)/home") {
                     UIApplication.shared.open(url)
                 }
             }
             if textObj.title == "Our Team" {
-                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(site.slug)/aboutus") {
+                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(Session.shared.slug)/aboutus") {
                     present(Presenter.openSVC(url: url), animated: true)
                 }
             }
             if textObj.title == "Contact Us" {
-                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(site.slug)/contact") {
+                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(Session.shared.slug)/contact") {
                     present(Presenter.openSVC(url: url), animated: true)
                 }
             }

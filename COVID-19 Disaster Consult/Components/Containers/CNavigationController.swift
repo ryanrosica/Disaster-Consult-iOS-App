@@ -30,7 +30,9 @@ class CNavigationController: UINavigationController {
         commonInit()
     }
     
-    
-    func commonInit() {}
+    func commonInit() {
+        navigationBar.tintColor = UIColor.white
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
     
 }

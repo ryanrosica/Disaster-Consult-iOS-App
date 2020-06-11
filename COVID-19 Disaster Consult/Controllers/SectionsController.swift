@@ -11,11 +11,10 @@ import PromiseKit
 
 class SectionsController: DisasterPageViewController {
     var category: Category
-    var site: Site
-    init(category: Category, site: Site) {
-        self.site = site
+
+    init(category: Category) {
         self.category = category
-        super.init(title: site.title)
+        super.init()
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
         fetch()
@@ -42,7 +41,7 @@ class SectionsController: DisasterPageViewController {
     
     
     func fetch() {
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.category(id: category.id ), method: .GET, site: site.slug) else { return }
+        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.category(id: category.id ), method: .GET) else { return }
         
         firstly {
             URLSession.shared.dataTask(.promise, with: request).validate()
@@ -85,7 +84,7 @@ extension SectionsController: CTableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if let section = self.tableView.data[0][indexPath.row] as? SectionObject {
-            let contentController = SectionController(section: section.section, site: site)
+            let contentController = SectionController(section: section.section)
             navigationController?.pushViewController(contentController, animated: true)
         }
     }

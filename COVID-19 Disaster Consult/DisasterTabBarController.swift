@@ -10,13 +10,14 @@ import UIKit
 import PromiseKit
 
 class DisasterTabBarController: CTabBarController {
+    
     var site: Site?
     static let buttonWidth: CGFloat = 55
 
     override init() {
         super.init()
         self.setViewControllers([LoadingViewController()], animated: true)
-        loadViews()
+        
         
         
     }
@@ -27,64 +28,86 @@ class DisasterTabBarController: CTabBarController {
     
 
     func loadViews() {
-        fetchSite {
-            guard let site = self.site else {
-                return
-                
-            }
-            let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false, site: site)
-            
-            homeController.title = "Disaster Consult | \(site.title)"
-            let newsNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
-            newsNav.navigationBar.barStyle = .black
-            newsNav.navigationBar.tintColor = .white
-            newsNav.title = "News"
-            
-            let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true, site: site)
-            litController.title = "Disaster Consult | \(site.title)"
-            let litNav: CNavigationController = CNavigationController.init(rootViewController: litController)
-            litNav.navigationBar.barStyle = .black
-            litNav.navigationBar.tintColor = .white
-            litNav.title = "Literature"
-            
-            
-            
-            let resourcesNav: CNavigationController = CNavigationController.init(rootViewController: ResourcesController(site: site))
-            resourcesNav.navigationBar.barStyle = .black
-            resourcesNav.navigationBar.tintColor = .white
-            resourcesNav.title = "Disaster Consult | \(site.title)"
-            resourcesNav.title = "Resources"
-            
-            let aboutNav: CNavigationController = CNavigationController.init(rootViewController: AboutController(site: site))
-            aboutNav.navigationBar.barStyle = .black
-            aboutNav.navigationBar.tintColor = .white
-            aboutNav.title = "About"
-            
-            
-            
-            
-            self.setViewControllers([resourcesNav, newsNav, litNav, aboutNav], animated: true)
-            
-            if let tab = self.tabBar.items?[0]{
-                tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
-            }
-            if let tab = self.tabBar.items?[1]{
-                tab.image = #imageLiteral(resourceName: "icons8-news-30")
-            }
-            if let tab = self.tabBar.items?[2]{
-                tab.image = #imageLiteral(resourceName: "icons8-literature-30")
-            }
+        guard let site = self.site else {
+            self.selectDisaster()
+            return
+        }
+        
+        let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false)
+        
+        homeController.title = "Disaster Consult | \(site.title)"
+        let newsNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
+        newsNav.navigationBar.barStyle = .black
+        newsNav.navigationBar.tintColor = .white
+        newsNav.title = "News"
+        
+        let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true)
+        litController.title = "Disaster Consult | \(site.title)"
+        let litNav: CNavigationController = CNavigationController.init(rootViewController: litController)
+        litNav.navigationBar.barStyle = .black
+        litNav.navigationBar.tintColor = .white
+        litNav.title = "Literature"
+        
+        
+        
+        let resourcesNav: CNavigationController = CNavigationController.init(rootViewController: ResourcesController())
+        resourcesNav.navigationBar.barStyle = .black
+        resourcesNav.navigationBar.tintColor = .white
+        resourcesNav.title = "Disaster Consult | \(site.title)"
+        resourcesNav.title = "Resources"
+        
+        let aboutNav: CNavigationController = CNavigationController.init(rootViewController: AboutController())
+        aboutNav.navigationBar.barStyle = .black
+        aboutNav.navigationBar.tintColor = .white
+        aboutNav.title = "About"
+        
+        
+        
+        
+        self.setViewControllers([resourcesNav, newsNav, litNav, aboutNav], animated: true)
+        
+        if let tab = self.tabBar.items?[0]{
+            tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
+        }
+        if let tab = self.tabBar.items?[1]{
+            tab.image = #imageLiteral(resourceName: "icons8-news-30")
+        }
+        if let tab = self.tabBar.items?[2]{
+            tab.image = #imageLiteral(resourceName: "icons8-literature-30")
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        selectDisaster()
+    }
     
-    func choose() {
-        UserDefaults.standard.removeObject(forKey: "slug")
-        loadViews()
-
+    @objc func selectDisaster() {
+        
+        let select: ChooseDisasterController = ChooseDisasterController.init(completionHandler: { (site) in
+            self.site = site
+            Session.shared.site = self.site
+            self.loadViews()
+        })
+        select.navigationItem.title = "Disaster Consult"
+        
+        let nav: CNavigationController = CNavigationController.init(rootViewController: select)
+        
+        nav.isModalInPopover = site == nil
+        if site != nil {
+            select.showClose()
+        }
+        
+        self.present(nav, animated: true, completion: nil)
     }
     
     
+    
+    
+    /*
+     func choose() {
+         loadViews()
+     }
     func fetchSite(completion: @escaping () -> Void) {
         guard let slug = UserDefaults.standard.string(forKey: "slug") else {
             let chooseDisasterController = ChooseDisasterController { site in
@@ -137,7 +160,7 @@ class DisasterTabBarController: CTabBarController {
          }
          */
         
-    }
+    }*/
 }
 
 extension DisasterTabBarController {

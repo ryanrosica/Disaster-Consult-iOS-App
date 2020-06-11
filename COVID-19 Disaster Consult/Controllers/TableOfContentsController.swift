@@ -12,15 +12,14 @@ import PromiseKit
 class TableOfContentsController: CTableViewController {
     var completion: ([UIViewController]) -> Void
     var selectedID: String
-    var site: Site
     
-    init(selectedID: String, site: Site, completion: @escaping ([UIViewController]) -> Void) {
-        self.site = site
+    init(selectedID: String, completion: @escaping ([UIViewController]) -> Void) {
         self.completion = completion
         self.selectedID = selectedID
         super.init(tableView: BTableView.init(style: .plain))
 
         tableView.setDelegate(self)
+        self.showClose()
         //tableView.separatorStyle = .none
 
         self.title = ""
@@ -52,7 +51,7 @@ class TableOfContentsController: CTableViewController {
     }
     
     func fetch() {
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.tableOfContents(), method: .GET, site: site.slug) else { return }
+        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.tableOfContents(), method: .GET) else { return }
         
         firstly {
             URLSession.shared.dataTask(.promise, with: request).validate()
@@ -107,10 +106,10 @@ extension TableOfContentsController: CTableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let section = self.tableView.data[0][indexPath.row] as? SectionObject {
-            let sectionController = SectionController(section: section.section, site: site)
+            let sectionController = SectionController(section: section.section)
             guard let category = section.section.category else { return }
-            let sectionsController = SectionsController(category: category, site: site)
-            self.completion([ResourcesController(site: site), sectionsController, sectionController])
+            let sectionsController = SectionsController(category: category)
+            self.completion([ResourcesController(), sectionsController, sectionController])
             self.dismiss(animated: true, completion: nil)
             
         }

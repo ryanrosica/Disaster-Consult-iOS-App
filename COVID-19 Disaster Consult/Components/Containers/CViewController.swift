@@ -37,4 +37,11 @@ class CViewController: UIViewController {
         }
     }
     
+    func showClose() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissSelf))
+    }
+    
+    @objc func dismissSelf() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

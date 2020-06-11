@@ -13,7 +13,6 @@ import PromiseKit
 import SafariServices
 
 class ArticleController: DisasterPageViewController {
-    var site: Site
     var endpoint: String
     var dataJSONType: String
     var viewTitle: String
@@ -22,13 +21,12 @@ class ArticleController: DisasterPageViewController {
     var page: String? = nil
     var reloading: Bool = false
     
-    init(endpoint: String, dataJSONType: String, title: String, cellType: AnyClass, seperators: Bool, site: Site) {
-        self.site = site
+    init(endpoint: String, dataJSONType: String, title: String, cellType: AnyClass, seperators: Bool) {
         self.endpoint = endpoint
         self.dataJSONType = dataJSONType
         self.cellType = cellType
         self.viewTitle = title
-        super.init(title: site.title)
+        super.init()
 
         tableView.setDelegate(self)
         if(!seperators) {
@@ -77,7 +75,7 @@ class ArticleController: DisasterPageViewController {
         
 
         
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: self.endpoint, parameters: ["page": page ?? ""], method: .GET, site: site.slug) else {
+        guard let request: URLRequest = Session.makeUrlRequest(endpoint: self.endpoint, parameters: ["page": page ?? ""], method: .GET) else {
             //Presenter.toast(text: "Error")
             return
         }
@@ -130,7 +128,7 @@ extension ArticleController: CTableViewDelegate {
         }
         else {
             if let description = link?.link.description {
-                let webView = WebView(site: site)
+                let webView = WebView()
                 webView.html = description
                 webView.pageTitle = link?.link.title ?? ""
                 webView.url = "https://www.disasterconsult.org/literature/\(link?.link.id ?? "")"

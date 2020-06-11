@@ -9,9 +9,18 @@
 import UIKit
 
 class DisasterPageViewController: CTableViewController {
-    init(title: String, style: UITableView.Style = .plain) {
+    
+    let titleLabel: UILabel = {
+        let lbl: UILabel = UILabel.init()
+        lbl.isUserInteractionEnabled = true
+        lbl.numberOfLines = 1
+        lbl.font = Fonts.smallTitle
+        return lbl
+    }()
+    
+    init(style: UITableView.Style = .plain) {
         super.init(tableView: BTableView.init(style: style))
-        titleLabel.text = "\(title) 🔽"
+        titleLabel.text = "\(Session.shared.site?.title ?? "") 🔽"
         self.navigationItem.titleView = titleLabel
         let tap = UITapGestureRecognizer(target:self,action:#selector(self.changeDisaster))
         titleLabel.addGestureRecognizer(tap)
@@ -23,24 +32,24 @@ class DisasterPageViewController: CTableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
     }
     
-    let titleLabel: UILabel = {
-        let lbl: UILabel = UILabel.init()
-        lbl.isUserInteractionEnabled = true
-        lbl.numberOfLines = 1
-        lbl.font = Fonts.smallTitle
-        return lbl
-    }()
+    
     
     
     @objc func changeDisaster(sender:UITapGestureRecognizer) {
         if let tabBar = self.tabBarController as? DisasterTabBarController {
-            tabBar.choose()
+            tabBar.selectDisaster()
         }
     }
 

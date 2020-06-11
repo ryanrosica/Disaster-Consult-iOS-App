@@ -10,7 +10,6 @@ import UIKit
 import WebKit
 import SnapKit
 class WebView: UIViewController {
-    var site: Site?
     var html: String = ""
     var pageTitle: String = ""
     var url: String = ""
@@ -49,8 +48,7 @@ class WebView: UIViewController {
     
     @objc func contentsPressed() {
         
-        guard let site = site else { return }
-        let contentsController = TableOfContentsController(selectedID: id, site: site, completion: {controllers in
+        let contentsController = TableOfContentsController(selectedID: id, completion: {controllers in
             self.navigationController?.setViewControllers(controllers, animated: true)
         })
         let navController = CNavigationController(rootViewController: contentsController)
@@ -74,8 +72,7 @@ class WebView: UIViewController {
         
     }
     
-    init(site: Site? = nil) {
-        self.site = site
+    init() {
         super.init(nibName: nil, bundle: nil)
         webView.navigationDelegate = self
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

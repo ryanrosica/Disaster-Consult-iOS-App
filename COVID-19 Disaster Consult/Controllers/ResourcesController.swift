@@ -10,10 +10,8 @@ import UIKit
 import PromiseKit
 
 class ResourcesController: DisasterPageViewController {
-    var site: Site
-    init(site: Site) {
-        self.site = site
-        super.init(title: site.title)
+    init() {
+        super.init()
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
         self.title = "Resources"
@@ -42,7 +40,7 @@ class ResourcesController: DisasterPageViewController {
         
         
         
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.categories(), method: .GET, site: site.slug) else { return }
+        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.categories(), method: .GET) else { return }
         
         firstly {
             URLSession.shared.dataTask(.promise, with: request).validate()
@@ -90,7 +88,7 @@ extension ResourcesController: CTableViewDelegate {
         }
         
         if let category = self.tableView.data[0][indexPath.row] as? CategoryObject {
-            let sectionsController = SectionsController(category: category.category, site: site)
+            let sectionsController = SectionsController(category: category.category)
             navigationController?.pushViewController(sectionsController, animated: true)
         }
     }

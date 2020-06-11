@@ -10,12 +10,10 @@ import UIKit
 import PromiseKit
 import WebKit
 class SectionController: DisasterPageViewController {
-    var site: Site
     var section: Section
-    init(section: Section, site: Site) {
-        self.site = site
+    init(section: Section) {
         self.section = section
-        super.init(title: site.title)
+        super.init()
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
         fetch()
@@ -30,7 +28,7 @@ class SectionController: DisasterPageViewController {
     
         
     func fetch() {
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.section(id: section.id ), method: .GET, site: site.slug) else { return }
+        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.section(id: section.id), method: .GET) else { return }
         
         firstly {
             URLSession.shared.dataTask(.promise, with: request).validate()
@@ -82,7 +80,7 @@ extension SectionController: CTableViewDelegate {
         self.tableView.deselectRow(at: indexPath, animated: true)
 
         if let link = self.tableView.data[0][indexPath.row] as? LinkObject {
-            let webView = WebView(site: site)
+            let webView = WebView()
                 webView.html = link.link.content
                 webView.pageTitle = link.link.title
                 webView.id = section.id

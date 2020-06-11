@@ -10,29 +10,43 @@ import Foundation
 
 struct Endpoints {
     
-    static func links() -> String {
-        return "/links"
+    static func site_api(_ endpoint: String) -> String {
+        return "/\(Session.shared.slug)/api/v1\(endpoint)"
     }
+    
+    static func api(_ endpoint: String) -> String {
+        return "/api/v1\(endpoint)"
+    }
+    
+    static func links() -> String {
+        return site_api("/links")
+    }
+    
     static func categories() -> String {
-        return "/provider/categories"
+        return site_api("/provider/categories")
     }
     
     static func category(id: String) -> String {
-        return "/categories/\(id)"
+        return site_api("/categories/\(id)")
     }
+    
     static func literature () -> String {
-        return "/literature"
+        return site_api("/literature")
     }
+    
     static func literature (id: String) -> String {
-        return "/literature/\(id)"
+        return site_api("/literature/\(id)")
     }
+    
     static func section(id: String) -> String {
-        return "/section/\(id)"
+        return site_api("/section/\(id)")
     }
+    
     static func tableOfContents() -> String {
-        return "/contents"
+        return site_api("/contents")
     }
+    
     static func sites() -> String {
-        return "/sites"
+        return api("/sites")
     }
 }
