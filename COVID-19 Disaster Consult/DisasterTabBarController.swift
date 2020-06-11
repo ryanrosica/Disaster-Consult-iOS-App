@@ -9,9 +9,10 @@
 import UIKit
 import PromiseKit
 
-class DisasterTabBarController: FABTabBarController {
+class DisasterTabBarController: CTabBarController {
     var site: Site?
-    
+    static let buttonWidth: CGFloat = 55
+
     override init() {
         super.init()
         self.setViewControllers([LoadingViewController()], animated: true)
@@ -137,4 +138,47 @@ class DisasterTabBarController: FABTabBarController {
          */
         
     }
+}
+
+extension DisasterTabBarController {
+    
+    @objc func buttonPressed() {
+        guard let site = site else { return }
+        let safariController = Presenter.openSVC(url: URL(string: "https://www.disasterconsult.org/\(site.slug)/contact")!)
+        safariController.providesPresentationContextTransitionStyle = true
+        safariController.modalPresentationStyle = .pageSheet
+        self.present(safariController, animated: true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        let floatingButton: UIButton = {
+               let button = UIButton(type: .custom)
+               button.layer.cornerRadius = 0.5 * DisasterTabBarController.buttonWidth
+               button.clipsToBounds = true
+               button.layer.shadowColor = UIColor.black.cgColor
+               button.layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
+               button.layer.shadowRadius = 3
+               button.layer.shadowOpacity = 0.2
+               button.layer.masksToBounds = false
+               button.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+               button.tintColor = .white
+               button.titleLabel?.font = Fonts.smallCaption
+               button.setImage(#imageLiteral(resourceName: "icons8-feedback-30"), for: .normal)
+               button.setTitleColor(.white, for: .normal)
+               button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+               return button
+           }()
+        
+        super.viewDidLoad()
+        self.view.insertSubview(floatingButton, belowSubview: self.tabBar)
+        
+        floatingButton.translatesAutoresizingMaskIntoConstraints = false
+        floatingButton.snp.makeConstraints { maker in
+            maker.height.equalTo(DisasterTabBarController.buttonWidth)
+            maker.width.equalTo(DisasterTabBarController.buttonWidth)
+            maker.right.equalTo(self.view).inset(16)
+            maker.bottom.equalTo(self.tabBar.snp.top).inset(-10)
+        }
+    }
+
 }

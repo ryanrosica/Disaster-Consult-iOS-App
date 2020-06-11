@@ -24,11 +24,7 @@ class AboutController: DisasterPageViewController {
     }
     
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
-    }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -73,17 +69,17 @@ extension AboutController: CTableViewDelegate {
         if let textObj: TitleObject = object as? TitleObject {
             
             if textObj.title == "Our Website" {
-                if let url: URL = URL.init(string: "https://www.disasterconsult.org/home") {
+                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(site.slug)/home") {
                     UIApplication.shared.open(url)
                 }
             }
             if textObj.title == "Our Team" {
-                if let url: URL = URL.init(string: "https://www.disasterconsult.org/aboutus") {
+                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(site.slug)/aboutus") {
                     present(Presenter.openSVC(url: url), animated: true)
                 }
             }
             if textObj.title == "Contact Us" {
-                if let url: URL = URL.init(string: "https://www.disasterconsult.org/contact") {
+                if let url: URL = URL.init(string: "https://www.disasterconsult.org/\(site.slug)/contact") {
                     present(Presenter.openSVC(url: url), animated: true)
                 }
             }

@@ -23,6 +23,12 @@ class DisasterPageViewController: CTableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
+    }
+    
     let titleLabel: UILabel = {
         let lbl: UILabel = UILabel.init()
         lbl.isUserInteractionEnabled = true
