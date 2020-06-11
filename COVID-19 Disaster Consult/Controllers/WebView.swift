@@ -70,7 +70,7 @@ class WebView: UIViewController {
         }
         view = webView
         makeTableOfContentsView()
-        self.title = "Disaster Consult | \(site?.title ?? "")"
+//        self.title = "Disaster Consult | \(site?.title ?? "")"
         
     }
     

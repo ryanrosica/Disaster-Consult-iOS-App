@@ -47,7 +47,7 @@ class FABTabBarController: CTabBarController, ConstraintRelatableTarget {
             maker.height.equalTo(FABTabBarController.buttonWidth)
             maker.width.equalTo(FABTabBarController.buttonWidth)
             maker.right.equalTo(self.view).inset(16)
-            maker.bottom.equalTo(self.tabBar).inset(UIDevice.current.userInterfaceIdiom == .pad ? FABTabBarController.buttonWidth + 16 : 100)
+            maker.bottom.equalTo(self.tabBar.snp.top).inset(-10)
         }
     }
 

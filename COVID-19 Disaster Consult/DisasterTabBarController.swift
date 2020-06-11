@@ -34,7 +34,7 @@ class DisasterTabBarController: FABTabBarController {
             let newsNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
             newsNav.navigationBar.barStyle = .black
             newsNav.navigationBar.tintColor = .white
-            newsNav.title = "Home"
+            newsNav.title = "News"
             
             let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true, site: site)
             litController.title = "Disaster Consult | \(site.title)"

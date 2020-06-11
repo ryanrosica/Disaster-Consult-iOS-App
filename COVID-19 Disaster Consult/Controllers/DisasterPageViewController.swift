@@ -21,6 +21,7 @@ class DisasterPageViewController: CTableViewController {
         let lbl: UILabel = UILabel.init()
         lbl.isUserInteractionEnabled = true
         lbl.numberOfLines = 1
+        lbl.font = Fonts.smallTitle
         return lbl
     }()
     

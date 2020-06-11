@@ -17,7 +17,7 @@ public struct Fonts {
         return getFont(style: "Regular", fontSize: 16)
     }
     static var header: UIFont {
-        return getFont(style: "ExtraBold", fontSize: 30)
+        return getFont(style: "ExtraBold", fontSize: 28)
     }
     static var smallTitle: UIFont {
         return getFont(style: "Bold", fontSize: 16)
