@@ -32,4 +32,7 @@ struct Endpoints {
     static func tableOfContents() -> String {
         return "/contents"
     }
+    static func sites() -> String {
+        return "/sites"
+    }
 }

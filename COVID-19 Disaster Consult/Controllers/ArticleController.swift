@@ -12,7 +12,8 @@ import PMKFoundation
 import PromiseKit
 import SafariServices
 
-class ArticleController: CTableViewController {
+class ArticleController: DisasterPageViewController {
+    var site: Site
     var endpoint: String
     var dataJSONType: String
     var viewTitle: String
@@ -21,7 +22,8 @@ class ArticleController: CTableViewController {
     var page: String? = nil
     var reloading: Bool = false
     
-    init(endpoint: String, dataJSONType: String, title: String, cellType: AnyClass, seperators: Bool) {
+    init(endpoint: String, dataJSONType: String, title: String, cellType: AnyClass, seperators: Bool, site: Site) {
+        self.site = site
         self.endpoint = endpoint
         self.dataJSONType = dataJSONType
         self.cellType = cellType
@@ -51,7 +53,6 @@ class ArticleController: CTableViewController {
         super.viewDidLayoutSubviews()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
-        //self.title = "Disaster Consult | COVID- 19"
     }
     
     func fetchNextPage() {
@@ -78,8 +79,10 @@ class ArticleController: CTableViewController {
             return
         }
         reloading = true
+        
 
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: self.endpoint, parameters: ["page": page ?? ""], method: .GET) else {
+        
+        guard let request: URLRequest = Session.makeUrlRequest(endpoint: self.endpoint, parameters: ["page": page ?? ""], method: .GET, site: site.slug) else {
             //Presenter.toast(text: "Error")
             return
         }
@@ -132,7 +135,7 @@ extension ArticleController: CTableViewDelegate {
         }
         else {
             if let description = link?.link.description {
-                let webView = WebView()
+                let webView = WebView(site: site)
                 webView.html = description
                 webView.pageTitle = link?.link.title ?? ""
                 webView.url = "https://www.disasterconsult.org/literature/\(link?.link.id ?? "")"

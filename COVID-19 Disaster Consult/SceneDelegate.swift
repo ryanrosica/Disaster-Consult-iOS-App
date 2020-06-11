@@ -12,47 +12,12 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let tabBarController: CTabBarController = FABTabBarController.init()
+    let tabBarController: CTabBarController = DisasterTabBarController.init()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false)
-            homeController.title = "Disaster Consult | COVID- 19"
-            let newsNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
-            newsNav.navigationBar.barStyle = .black
-            newsNav.navigationBar.tintColor = .white
-            newsNav.title = "News"
-            
-            let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true)
-            litController.title = "Disaster Consult | COVID- 19"
-            let litNav: CNavigationController = CNavigationController.init(rootViewController: litController)
-            litNav.navigationBar.barStyle = .black
-            litNav.navigationBar.tintColor = .white
-            litNav.title = "Literature"
-            
-            
-            
-            let resourcesNav: CNavigationController = CNavigationController.init(rootViewController: ResourcesController())
-            resourcesNav.navigationBar.barStyle = .black
-            resourcesNav.navigationBar.tintColor = .white
-            resourcesNav.title = "Resources"
-            
-            let aboutNav: CNavigationController = CNavigationController.init(rootViewController: AboutController())
-           aboutNav.navigationBar.barStyle = .black
-           aboutNav.navigationBar.tintColor = .white
-           aboutNav.title = "About"
-
-            tabBarController.setViewControllers([resourcesNav, newsNav, litNav, aboutNav], animated: true)
-            if let tab = tabBarController.tabBar.items?[0]{
-                tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
-            }
-            if let tab = tabBarController.tabBar.items?[1]{
-                tab.image = #imageLiteral(resourceName: "icons8-news-30")
-            }
-            if let tab = tabBarController.tabBar.items?[2]{
-                tab.image = #imageLiteral(resourceName: "icons8-literature-30")
-            }
+ 
             window.rootViewController = tabBarController
             self.window = window
             window.makeKeyAndVisible()

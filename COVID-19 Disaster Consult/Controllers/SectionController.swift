@@ -9,17 +9,19 @@
 import UIKit
 import PromiseKit
 import WebKit
-class SectionController: CTableViewController {
-
+class SectionController: DisasterPageViewController {
+    var site: Site
     var section: Section
-    init(section: Section) {
+    init(section: Section, site: Site) {
+        self.site = site
         self.section = section
         super.init(tableView: BTableView.init(style: .plain))
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
         fetch()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.title = "Disaster Consult | COVID- 19"
+        self.title = "Disaster Consult | \(site.title)"
+        
     }
 
         
@@ -30,7 +32,7 @@ class SectionController: CTableViewController {
     
         
     func fetch() {
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.section(id: section.id ), method: .GET) else { return }
+        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.section(id: section.id ), method: .GET, site: site.slug) else { return }
         
         firstly {
             URLSession.shared.dataTask(.promise, with: request).validate()
@@ -82,7 +84,7 @@ extension SectionController: CTableViewDelegate {
         self.tableView.deselectRow(at: indexPath, animated: true)
 
         if let link = self.tableView.data[0][indexPath.row] as? LinkObject {
-            let webView = WebView()
+            let webView = WebView(site: site)
                 webView.html = link.link.content
                 webView.pageTitle = link.link.title
                 webView.id = section.id

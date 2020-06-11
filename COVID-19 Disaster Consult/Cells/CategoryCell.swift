@@ -38,6 +38,10 @@ class CategoryCell: CCell {
             titleLbl.text = category.category.title
 
          }
+        if let site: SiteObject = object as? SiteObject {
+            titleLbl.text = site.site.title
+
+        }
     
     }
     

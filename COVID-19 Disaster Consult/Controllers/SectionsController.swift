@@ -9,16 +9,17 @@
 import UIKit
 import PromiseKit
 
-class SectionsController: CTableViewController {
+class SectionsController: DisasterPageViewController {
     var category: Category
-    
-    init(category: Category) {
+    var site: Site
+    init(category: Category, site: Site) {
+        self.site = site
         self.category = category
         super.init(tableView: BTableView.init(style: .plain))
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.title = "Disaster Consult | COVID- 19"
+        self.title = "Disaster Consult | \(site.title)"
         fetch()
         
     }
@@ -43,7 +44,7 @@ class SectionsController: CTableViewController {
     
     
     func fetch() {
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.category(id: category.id ), method: .GET) else { return }
+        guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.category(id: category.id ), method: .GET, site: site.slug) else { return }
         
         firstly {
             URLSession.shared.dataTask(.promise, with: request).validate()
@@ -86,7 +87,7 @@ extension SectionsController: CTableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if let section = self.tableView.data[0][indexPath.row] as? SectionObject {
-            let contentController = SectionController(section: section.section)
+            let contentController = SectionController(section: section.section, site: site)
             navigationController?.pushViewController(contentController, animated: true)
         }
     }
