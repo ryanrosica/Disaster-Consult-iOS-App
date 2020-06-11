@@ -12,14 +12,16 @@ import PromiseKit
 class DisasterTabBarController: FABTabBarController {
     var site: Site?
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        
-        super.viewWillAppear(animated)
+    override init() {
+        super.init()
         self.setViewControllers([LoadingViewController()], animated: true)
         loadViews()
         
         
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 
@@ -30,6 +32,7 @@ class DisasterTabBarController: FABTabBarController {
                 
             }
             let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false, site: site)
+            
             homeController.title = "Disaster Consult | \(site.title)"
             let newsNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
             newsNav.navigationBar.barStyle = .black

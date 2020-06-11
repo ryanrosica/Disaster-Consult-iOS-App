@@ -13,13 +13,10 @@ class AboutController: DisasterPageViewController {
     var site: Site
     init(site: Site) {
         self.site = site
-        super.init(tableView: BTableView.init(style: .grouped))
+        super.init(title: site.title, style: .grouped)
         tableView.setDelegate(self)
         tableView.separatorStyle = .singleLine
         self.title = "About Us"
-        self.title = "Disaster Consult | \(site.title)"
-
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.tabBarItem.title = "About"
         self.tabBarItem.image = UIImage.init(named: "about") ?? UIImage()
         self.view.backgroundColor = UIColor.groupTableViewBackground

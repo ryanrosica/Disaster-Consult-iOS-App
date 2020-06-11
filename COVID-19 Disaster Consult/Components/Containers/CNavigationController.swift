@@ -12,7 +12,7 @@ import UIKit
 class CNavigationController: UINavigationController {
     
     override init(rootViewController: UIViewController) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(navigationBarClass: NavigationBarNoAnimation.self, toolbarClass: nil)
         setViewControllers([rootViewController], animated: false)
         
         commonInit()

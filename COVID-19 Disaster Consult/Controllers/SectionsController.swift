@@ -15,11 +15,9 @@ class SectionsController: DisasterPageViewController {
     init(category: Category, site: Site) {
         self.site = site
         self.category = category
-        super.init(tableView: BTableView.init(style: .plain))
+        super.init(title: site.title)
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.title = "Disaster Consult | \(site.title)"
         fetch()
         
     }

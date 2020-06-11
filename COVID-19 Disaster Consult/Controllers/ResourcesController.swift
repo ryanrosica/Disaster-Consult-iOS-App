@@ -13,12 +13,10 @@ class ResourcesController: DisasterPageViewController {
     var site: Site
     init(site: Site) {
         self.site = site
-        super.init(tableView: BTableView.init(style: .plain))
+        super.init(title: site.title)
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
         self.title = "Resources"
-        self.title = "Disaster Consult | \(site.title)"
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
     }
     

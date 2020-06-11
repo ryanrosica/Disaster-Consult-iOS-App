@@ -9,12 +9,18 @@
 import UIKit
 
 class DisasterPageViewController: CTableViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        titleLabel.text = "\(self.title ?? "") 🔽" 
+    init(title: String, style: UITableView.Style = .plain) {
+        super.init(tableView: BTableView.init(style: style))
+        titleLabel.text = "\(title) 🔽"
         self.navigationItem.titleView = titleLabel
         let tap = UITapGestureRecognizer(target:self,action:#selector(self.changeDisaster))
         titleLabel.addGestureRecognizer(tap)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     let titleLabel: UILabel = {
@@ -33,4 +39,10 @@ class DisasterPageViewController: CTableViewController {
     }
 
     
+}
+
+class NavigationBarNoAnimation: UINavigationBar {
+    override func popItem(animated: Bool) -> UINavigationItem? {
+        return super.popItem(animated: false)
+    }
 }

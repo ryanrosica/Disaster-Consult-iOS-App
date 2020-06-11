@@ -25,7 +25,6 @@ class TableOfContentsController: CTableViewController {
 
         self.title = ""
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         
 
         

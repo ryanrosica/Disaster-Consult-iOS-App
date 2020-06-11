@@ -28,8 +28,7 @@ class ArticleController: DisasterPageViewController {
         self.dataJSONType = dataJSONType
         self.cellType = cellType
         self.viewTitle = title
-        super.init(tableView: BTableView.init(style: .plain))
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        super.init(title: site.title)
 
         tableView.setDelegate(self)
         if(!seperators) {
