@@ -29,18 +29,24 @@ class SectionsController: DisasterPageViewController {
 
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
     func fetch() {
+        if DownloadsManager.shared.isOffline {
+            var js: JSON = JSON.init(parseJSON: "{\"sections\":[]}")
+            var array: [JSON] = [JSON]()
+            for (key, subJson):(String, JSON) in (DownloadsManager.shared.currentDownload?.categoriesJS[category.id]["sections"] ?? JSON()) {
+                array.append(subJson)
+            }
+            
+            js["sections"].arrayObject = array
+            process(json: js)
+            return
+        }
+        
         guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.category(id: category.id ), method: .GET) else { return }
         
         firstly {
@@ -48,25 +54,27 @@ class SectionsController: DisasterPageViewController {
         }.map {
             try JSON.init(data: $0.data)
         }.done { json in
-            
-            var sections: [CCellObject] = [CCellObject]()
-
-            if let data: [JSON] = json["sections"].array {
-                for js in data {
-                    let sectionObject = SectionObject.init(section: Section.init(json: js))
-                    if (sectionObject.section.is_public) {
-                        sections.append(sectionObject)
-                    }
-                }
-            }
-            
-            sections.insert(TitleObject(title: self.category.title), at: 0)
-            self.tableView.data = [sections]
-            self.tableView.reloadData()
-            
+            self.process(json: json)
         }.catch { error in
             print(error)
         }
+    }
+    
+    func process(json: JSON) {
+        var sections: [CCellObject] = [CCellObject]()
+
+        if let data: [JSON] = json["sections"].array {
+            for js in data {
+                let sectionObject = SectionObject.init(section: Section.init(json: js))
+                if (sectionObject.section.is_public) {
+                    sections.append(sectionObject)
+                }
+            }
+        }
+        
+        sections.insert(TitleObject(title: self.category.title), at: 0)
+        self.tableView.data = [sections]
+        self.tableView.reloadData()
     }
 }
 
@@ -84,7 +92,7 @@ extension SectionsController: CTableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if let section = self.tableView.data[0][indexPath.row] as? SectionObject {
-            let contentController = SectionController(section: section.section)
+            let contentController = SectionController(section: section.section, category: self.category.id)
             navigationController?.pushViewController(contentController, animated: true)
         }
     }

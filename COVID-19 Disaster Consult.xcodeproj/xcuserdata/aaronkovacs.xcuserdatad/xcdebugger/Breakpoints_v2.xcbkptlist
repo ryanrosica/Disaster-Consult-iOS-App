@@ -30,42 +30,10 @@
             filePath = "COVID-19 Disaster Consult/DisasterTabBarController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "selectDisaster()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D7C237AD-3731-4C2B-B1FE-931CE72B6472 - 6a9135415cc8db81"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Disaster_Consult.DisasterTabBarController.selectDisaster() -&gt; ()"
-                  moduleName = "Disaster Consult"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aaronkovacs/Desktop/COVID-19%20Disaster%20Consult/Disaster-Consult-iOS-App/COVID-19%20Disaster%20Consult/DisasterTabBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  uuid = "D7C237AD-3731-4C2B-B1FE-931CE72B6472 - b824053133ffdd28"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Disaster_Consult.Site) -&gt; () in Disaster_Consult.DisasterTabBarController.selectDisaster() -&gt; ()"
-                  moduleName = "Disaster Consult"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aaronkovacs/Desktop/COVID-19%20Disaster%20Consult/Disaster-Consult-iOS-App/COVID-19%20Disaster%20Consult/DisasterTabBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "344">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -16,6 +16,14 @@ class Presenter: NSObject {
         UIApplication.shared.keyWindow?.rootViewController?.view?.noticeSuccess(text, autoClear: true, autoClearTime: 1)
     }*/
     
+    /*static func showError(description: String) {
+        let alert = UIAlertController.init(title: "Error", message: description, preferredStyle: .alert)
+                                        
+        alert.addAction(UIAlertAction.init(title: "Ok", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }*/
+    
     static func openSVC(url: URL) -> UIViewController {
         let config = SFSafariViewController.Configuration()
         

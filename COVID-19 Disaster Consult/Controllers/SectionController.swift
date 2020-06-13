@@ -11,8 +11,11 @@ import PromiseKit
 import WebKit
 class SectionController: DisasterPageViewController {
     var section: Section
-    init(section: Section) {
+    var category: String
+    
+    init(section: Section, category: String) {
         self.section = section
+        self.category = category
         super.init()
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
@@ -28,6 +31,19 @@ class SectionController: DisasterPageViewController {
     
         
     func fetch() {
+        
+        if DownloadsManager.shared.isOffline {
+            var js: JSON = JSON.init(parseJSON: "{\"posts\":[]}")
+            var array: [JSON] = [JSON]()
+            for (key, subJson):(String, JSON) in (DownloadsManager.shared.currentDownload?.categoriesJS[self.category]["sections"][section.id]["posts"] ?? JSON()) {
+                array.append(subJson)
+            }
+            
+            js["posts"].arrayObject = array
+            process(json: js)
+            return
+        }
+        
         guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.section(id: section.id), method: .GET) else { return }
         
         firstly {
@@ -35,23 +51,25 @@ class SectionController: DisasterPageViewController {
         }.map {
             try JSON.init(data: $0.data)
         }.done { json in
-            
-            var sections: [CCellObject] = [CCellObject]()
-            if let data: [JSON] = json["posts"].array {
-                for js in data {
-                    let linkObject = LinkObject.init(link: Link.init(json: js), cellType: SectionCell.self)
-                    if(linkObject.link.is_public) {
-                        sections.append(linkObject)
-                    }
-                }
-            }
-            sections.insert(TitleObject(title: self.section.title), at: 0)
-            self.tableView.data = [sections]
-            self.tableView.reloadData()
-            
+            self.process(json: json)
         }.catch { error in
             print(error)
         }
+    }
+    
+    func process(json: JSON) {
+        var sections: [CCellObject] = [CCellObject]()
+        if let data: [JSON] = json["posts"].array {
+            for js in data {
+                let linkObject = LinkObject.init(link: Link.init(json: js), cellType: SectionCell.self)
+                if(linkObject.link.is_public) {
+                    sections.append(linkObject)
+                }
+            }
+        }
+        sections.insert(TitleObject(title: self.section.title), at: 0)
+        self.tableView.data = [sections]
+        self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

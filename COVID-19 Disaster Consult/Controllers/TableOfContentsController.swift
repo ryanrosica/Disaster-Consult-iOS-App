@@ -52,6 +52,25 @@ class TableOfContentsController: CTableViewController {
     }
     
     func fetch() {
+        
+        if DownloadsManager.shared.isOffline {
+            var js: JSON = JSON.init(parseJSON: "{\"table_of_contents\":[]}")
+            var array: [JSON] = [JSON]()
+            for (key, subJson):(String, JSON) in (DownloadsManager.shared.currentDownload?.categoriesJS ?? JSON()) {
+                array.append(subJson)
+                
+                var sectionarray: [JSON] = [JSON]()
+                for (subkey, subsubJson):(String, JSON) in (subJson["sections"] ?? JSON()) {
+                    sectionarray.append(subsubJson)
+                }
+                array[array.count - 1]["sections"].arrayObject = sectionarray
+            }
+            
+            js["table_of_contents"].arrayObject = array
+            process(json: js)
+            return
+        }
+        
         guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.tableOfContents(), method: .GET) else { return }
         
         firstly {
@@ -59,37 +78,39 @@ class TableOfContentsController: CTableViewController {
         }.map {
             try JSON.init(data: $0.data)
         }.done { json in
-            
-            var cellObjects: [CCellObject] = [CCellObject]()
-
-            if let data: [JSON] = json["table_of_contents"].array {
-                for js in data {
-                    
-                    let categoryObject = CategoryObject.init(category: Category.init(json: js))
-                    cellObjects.append(categoryObject)
-                    
-                    if let sectionsData: [JSON] = js["sections"].array {
-                        for sectionData in sectionsData {
-                            let sectionObject = SectionObject.init(section: Section.init(json: sectionData), cellType: SectionCellSmall.self)
-                            sectionObject.section.category = categoryObject.category
-                            if sectionObject.section.id == self.selectedID {
-                                //sectionObject.bold = true
-                            }
-                            
-                            cellObjects.append(sectionObject)
-                        }
-                    }
-                    
-                }
-            }
-            
-            cellObjects.insert(TitleObject(title: "Table of Contents"), at: 0)
-            self.tableView.data = [cellObjects]
-            self.tableView.reloadData()
-            
+            self.process(json: json)
         }.catch { error in
             print(error)
         }
+    }
+    
+    func process(json: JSON) {
+        var cellObjects: [CCellObject] = [CCellObject]()
+
+        if let data: [JSON] = json["table_of_contents"].array {
+            for js in data {
+                
+                let categoryObject = CategoryObject.init(category: Category.init(json: js))
+                cellObjects.append(categoryObject)
+                
+                if let sectionsData: [JSON] = js["sections"].array {
+                    for sectionData in sectionsData {
+                        let sectionObject = SectionObject.init(section: Section.init(json: sectionData), cellType: SectionCellSmall.self)
+                        sectionObject.section.category = categoryObject.category
+                        if sectionObject.section.id == self.selectedID {
+                            //sectionObject.bold = true
+                        }
+                        
+                        cellObjects.append(sectionObject)
+                    }
+                }
+                
+            }
+        }
+        
+        cellObjects.insert(TitleObject(title: "Table of Contents"), at: 0)
+        self.tableView.data = [cellObjects]
+        self.tableView.reloadData()
     }
 
 }
@@ -107,7 +128,7 @@ extension TableOfContentsController: CTableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let section = self.tableView.data[0][indexPath.row] as? SectionObject {
-            let sectionController = SectionController(section: section.section)
+            let sectionController = SectionController(section: section.section, category: section.section.category?.id ?? "")
             guard let category = section.section.category else { return }
             let sectionsController = SectionsController(category: category)
             self.completion([ResourcesController(), sectionsController, sectionController])

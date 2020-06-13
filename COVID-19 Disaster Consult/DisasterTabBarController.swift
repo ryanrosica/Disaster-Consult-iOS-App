@@ -11,23 +11,55 @@ import PromiseKit
 
 class DisasterTabBarController: CTabBarController {
     
+    let floatingButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.layer.cornerRadius = 0.5 * DisasterTabBarController.buttonWidth
+        button.clipsToBounds = true
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
+        button.layer.shadowRadius = 3
+        button.layer.shadowOpacity = 0.2
+        button.layer.masksToBounds = false
+        button.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        button.tintColor = .white
+        button.titleLabel?.font = Fonts.smallCaption
+        button.setImage(#imageLiteral(resourceName: "icons8-feedback-30"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     var site: Site?
     static let buttonWidth: CGFloat = 55
+    var firstOpen: Bool = true
 
     override init() {
         super.init()
         self.setViewControllers([LoadingViewController()], animated: true)
         
         
-        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateOffline),
+            name: Notification.Name(rawValue: "DC_OfflineStatusUpdate"),
+            object: nil
+        )
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-    func loadViews() {
+    @objc func updateOffline() {
+        if DownloadsManager.shared.isOffline {
+            self.site = DownloadsManager.shared.currentDownload?.site ?? Site.init(json: JSON())
+            Session.shared.site = DownloadsManager.shared.currentDownload?.site ?? Site.init(json: JSON())
+        }
+        
+        loadViews()
+    }
+    
+    @objc func loadViews() {
         guard let site = self.site else {
             self.selectDisaster()
             return
@@ -56,30 +88,45 @@ class DisasterTabBarController: CTabBarController {
         resourcesNav.title = "Disaster Consult | \(site.title)"
         resourcesNav.title = "Resources"
         
+        let downloadNav: CNavigationController = CNavigationController.init(rootViewController: DownloadsController())
+        downloadNav.navigationBar.barStyle = .black
+        downloadNav.navigationBar.tintColor = .white
+        downloadNav.title = "Downloads"
+        
+        
         let aboutNav: CNavigationController = CNavigationController.init(rootViewController: AboutController())
         aboutNav.navigationBar.barStyle = .black
         aboutNav.navigationBar.tintColor = .white
         aboutNav.title = "About"
         
+        self.floatingButton.isHidden = DownloadsManager.shared.isOffline
         
-        
-        
-        self.setViewControllers([resourcesNav, newsNav, litNav, aboutNav], animated: true)
+        if DownloadsManager.shared.isOffline {
+            self.setViewControllers([resourcesNav, downloadNav, aboutNav], animated: true)
+        } else {
+            self.setViewControllers([resourcesNav, newsNav, litNav, downloadNav, aboutNav], animated: true)
+            
+            if let tab = self.tabBar.items?[1]{
+                tab.image = #imageLiteral(resourceName: "icons8-news-30")
+            }
+            if let tab = self.tabBar.items?[2]{
+                tab.image = #imageLiteral(resourceName: "icons8-literature-30")
+            }
+        }
         
         if let tab = self.tabBar.items?[0]{
             tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
         }
-        if let tab = self.tabBar.items?[1]{
-            tab.image = #imageLiteral(resourceName: "icons8-news-30")
-        }
-        if let tab = self.tabBar.items?[2]{
-            tab.image = #imageLiteral(resourceName: "icons8-literature-30")
-        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        selectDisaster()
+        
+        if firstOpen {
+            firstOpen = false
+            selectDisaster()
+        }
     }
     
     @objc func selectDisaster() {
@@ -87,6 +134,7 @@ class DisasterTabBarController: CTabBarController {
         let select: ChooseDisasterController = ChooseDisasterController.init(completionHandler: { (site) in
             self.site = site
             Session.shared.site = self.site
+            DownloadsManager.shared.currentDownload = nil
             self.loadViews()
         })
         select.navigationItem.title = "Disaster Consult"
@@ -174,23 +222,7 @@ extension DisasterTabBarController {
     }
     
     override func viewDidLoad() {
-        let floatingButton: UIButton = {
-               let button = UIButton(type: .custom)
-               button.layer.cornerRadius = 0.5 * DisasterTabBarController.buttonWidth
-               button.clipsToBounds = true
-               button.layer.shadowColor = UIColor.black.cgColor
-               button.layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
-               button.layer.shadowRadius = 3
-               button.layer.shadowOpacity = 0.2
-               button.layer.masksToBounds = false
-               button.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-               button.tintColor = .white
-               button.titleLabel?.font = Fonts.smallCaption
-               button.setImage(#imageLiteral(resourceName: "icons8-feedback-30"), for: .normal)
-               button.setTitleColor(.white, for: .normal)
-               button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-               return button
-           }()
+        
         
         super.viewDidLoad()
         self.view.insertSubview(floatingButton, belowSubview: self.tabBar)

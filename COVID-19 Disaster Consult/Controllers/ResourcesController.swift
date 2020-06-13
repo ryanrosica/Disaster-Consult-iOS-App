@@ -15,7 +15,7 @@ class ResourcesController: DisasterPageViewController {
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
         self.title = "Resources"
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,9 +24,9 @@ class ResourcesController: DisasterPageViewController {
         deselectAll()
     }
     
-
     
-
+    
+    
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,8 +37,17 @@ class ResourcesController: DisasterPageViewController {
     
     
     func fetch() {
-        
-        
+        if DownloadsManager.shared.isOffline {
+            var js: JSON = JSON.init(parseJSON: "{\"categories\":[]}")
+            var array: [JSON] = [JSON]()
+            for (key, subJson):(String, JSON) in (DownloadsManager.shared.currentDownload?.categoriesJS ?? JSON()) {
+                array.append(subJson)
+            }
+            
+            js["categories"].arrayObject = array
+            process(json: js)
+            return
+        }
         
         guard let request: URLRequest = Session.makeUrlRequest(endpoint: Endpoints.categories(), method: .GET) else { return }
         
@@ -47,26 +56,28 @@ class ResourcesController: DisasterPageViewController {
         }.map {
             try JSON.init(data: $0.data)
         }.done { json in
-            
-            var categories: [CCellObject] = [CCellObject]()
-
-            if let data: [JSON] = json["categories"].array {
-                for js in data {
-                    let categoryObject = CategoryObject.init(category: Category.init(json: js))
-                    if (categoryObject.category.is_public) {
-                        categories.append(categoryObject)
-                    }
-                }
-            }
-            categories.insert(TitleObject(title: "This clinical resource is under constant development. Please check back frequently for updates and help us improve by providing feedback.", cellType: HeaderCell.self), at: 0)
-            categories.insert(TitleObject(title: "Clinical and Operational Resources"), at: 0)
- 
-            self.tableView.data = [categories]
-            self.tableView.reloadData()
-            
+            self.process(json: json)
         }.catch { error in
             print(error)
         }
+    }
+    
+    func process(json: JSON) {
+        var categories: [CCellObject] = [CCellObject]()
+        
+        if let data: [JSON] = json["categories"].array {
+            for js in data {
+                let categoryObject = CategoryObject.init(category: Category.init(json: js))
+                if (categoryObject.category.is_public) {
+                    categories.append(categoryObject)
+                }
+            }
+        }
+        categories.insert(TitleObject(title: "This clinical resource is under constant development. Please check back frequently for updates and help us improve by providing feedback.", cellType: HeaderCell.self), at: 0)
+        categories.insert(TitleObject(title: "Clinical and Operational Resources"), at: 0)
+        
+        self.tableView.data = [categories]
+        self.tableView.reloadData()
     }
 }
 

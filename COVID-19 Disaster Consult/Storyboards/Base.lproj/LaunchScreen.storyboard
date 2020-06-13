@@ -17,30 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disaster Consult" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Sfw-oa-a90">
-                                <rect key="frame" x="35" y="399" width="344" height="46"/>
+                                <rect key="frame" x="35" y="399" width="344" height="44.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="37"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COVID-19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XKA-qh-QhJ">
-                                <rect key="frame" x="35" y="456" width="344" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="lLZ-W5-kmp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="XKA-qh-QhJ" firstAttribute="top" secondItem="Sfw-oa-a90" secondAttribute="bottom" constant="11" id="4my-cL-vwM"/>
-                            <constraint firstItem="Sfw-oa-a90" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="BTn-AR-xZ7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XKA-qh-QhJ" secondAttribute="bottom" constant="372" id="HCM-09-nMv"/>
-                            <constraint firstItem="Sfw-oa-a90" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="355" id="N72-NX-A5m"/>
-                            <constraint firstItem="Sfw-oa-a90" firstAttribute="trailing" secondItem="XKA-qh-QhJ" secondAttribute="trailing" id="Qlg-PC-fmR"/>
-                            <constraint firstItem="Sfw-oa-a90" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="Tas-Ww-Eqo"/>
-                            <constraint firstItem="Sfw-oa-a90" firstAttribute="leading" secondItem="XKA-qh-QhJ" secondAttribute="leading" id="xcB-Vw-0w5"/>
+                            <constraint firstItem="Sfw-oa-a90" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="355" id="LIc-fA-Dn0"/>
+                            <constraint firstItem="Sfw-oa-a90" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="aTL-Rp-Gf6"/>
+                            <constraint firstItem="Sfw-oa-a90" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="m3Q-TA-GOU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

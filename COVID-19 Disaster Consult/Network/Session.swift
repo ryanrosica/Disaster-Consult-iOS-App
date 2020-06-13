@@ -45,7 +45,6 @@ extension Session {
         }
 
         guard let url: URL = URL.init(string: Session.baseURL + endpoint + parameterStr) else { return nil }
-        print(url.absoluteString)
         var rq = URLRequest(url: url)
         rq.timeoutInterval = 30
         rq.httpMethod = method.value()

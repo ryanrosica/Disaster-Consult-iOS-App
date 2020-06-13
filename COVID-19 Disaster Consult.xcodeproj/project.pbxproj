@@ -58,6 +58,15 @@
 		A42CED71243FEDC5006553D2 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F51243FE5FD0053A1BF /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A42CED72243FEDC6006553D2 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F53243FE6030053A1BF /* SnapKit.framework */; };
 		A42CED73243FEDC6006553D2 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F53243FE6030053A1BF /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A43333532494266D002DE480 /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43333522494266D002DE480 /* DownloadsController.swift */; };
+		A4333356249426BF002DE480 /* DownloadsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4333355249426BF002DE480 /* DownloadsManager.swift */; };
+		A433335824942770002DE480 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433335724942770002DE480 /* Reachability.swift */; };
+		A433335B24942A3E002DE480 /* downloads.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A433335924942A3E002DE480 /* downloads.xcdatamodeld */; };
+		A433336124942E66002DE480 /* ManagedDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433336024942E66002DE480 /* ManagedDownload.swift */; };
+		A433336324943003002DE480 /* DownloadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433336224943003002DE480 /* DownloadCell.swift */; };
+		A4333365249432EB002DE480 /* DownloadCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4333364249432EB002DE480 /* DownloadCache.swift */; };
+		A4333367249432F2002DE480 /* OfflineDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4333366249432F2002DE480 /* OfflineDownload.swift */; };
+		A43333692494496C002DE480 /* TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43333682494496C002DE480 /* TimeAgo.swift */; };
 		A4A54F15243FDEDA0053A1BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A54F14243FDEDA0053A1BF /* AppDelegate.swift */; };
 		A4A54F1C243FDEDA0053A1BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A54F1A243FDEDA0053A1BF /* Main.storyboard */; };
 		A4A54F1E243FDEDC0053A1BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4A54F1D243FDEDC0053A1BF /* Assets.xcassets */; };
@@ -150,6 +159,15 @@
 		5FDBDF2C247EE45A001F9130 /* SectionCellSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCellSmall.swift; sourceTree = "<group>"; };
 		A42CED67243FEB37006553D2 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A42CED69243FED13006553D2 /* PMKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKFoundation.framework; path = Carthage/Build/iOS/PMKFoundation.framework; sourceTree = SOURCE_ROOT; };
+		A43333522494266D002DE480 /* DownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
+		A4333355249426BF002DE480 /* DownloadsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsManager.swift; sourceTree = "<group>"; };
+		A433335724942770002DE480 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		A433335A24942A3E002DE480 /* downloads.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = downloads.xcdatamodel; sourceTree = "<group>"; };
+		A433336024942E66002DE480 /* ManagedDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedDownload.swift; sourceTree = "<group>"; };
+		A433336224943003002DE480 /* DownloadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCell.swift; sourceTree = "<group>"; };
+		A4333364249432EB002DE480 /* DownloadCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCache.swift; sourceTree = "<group>"; };
+		A4333366249432F2002DE480 /* OfflineDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDownload.swift; sourceTree = "<group>"; };
+		A43333682494496C002DE480 /* TimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgo.swift; sourceTree = "<group>"; };
 		A4A54F11243FDEDA0053A1BF /* Disaster Consult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Disaster Consult.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A54F14243FDEDA0053A1BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4A54F1B243FDEDA0053A1BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -225,6 +243,7 @@
 				5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */,
 				5F6277CD2457741D00499F40 /* HeaderCell.swift */,
 				A4AAFFEE24736F9D00F26664 /* TextCell.swift */,
+				A433336224943003002DE480 /* DownloadCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -255,6 +274,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		A43333542494268D002DE480 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				A4333355249426BF002DE480 /* DownloadsManager.swift */,
+				A4333364249432EB002DE480 /* DownloadCache.swift */,
+				A4333366249432F2002DE480 /* OfflineDownload.swift */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
 		A4A54F08243FDED90053A1BF = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +310,8 @@
 				5F3FB65224927848006F1A89 /* DisasterTabBarController.swift */,
 				A4A54F22243FDEDC0053A1BF /* Info.plist */,
 				A4A54F1D243FDEDC0053A1BF /* Assets.xcassets */,
+				A433335924942A3E002DE480 /* downloads.xcdatamodeld */,
+				A43333542494268D002DE480 /* Singletons */,
 				5F8C8FFE244687E500241B7D /* Objects */,
 				5F8C8FFF244687EB00241B7D /* Cells */,
 				A4A54F3A243FE07B0053A1BF /* Controllers */,
@@ -318,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				A4A54F2C243FDF420053A1BF /* Session.swift */,
+				A433335724942770002DE480 /* Reachability.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -357,6 +389,7 @@
 				5FDBDF28247ED4BF001F9130 /* TableOfContentsController.swift */,
 				5F27E9D8248ED28800007C3C /* DisasterPageViewController.swift */,
 				5F3FB654249292CF006F1A89 /* LoadingViewController.swift */,
+				A43333522494266D002DE480 /* DownloadsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -390,6 +423,7 @@
 				5F8C8FF82446730300241B7D /* Category.swift */,
 				5F062FB72450AA75009B7EA5 /* Section.swift */,
 				5F27E9DA248ED45400007C3C /* Site.swift */,
+				A433336024942E66002DE480 /* ManagedDownload.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -400,6 +434,7 @@
 				A4AAFFE32473639B00F26664 /* Toast */,
 				A4A54F58243FE74A0053A1BF /* SwiftyJSON.swift */,
 				A4AAFFE8247363FF00F26664 /* Presenter.swift */,
+				A43333682494496C002DE480 /* TimeAgo.swift */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -507,6 +542,7 @@
 				A4A54F56243FE69C0053A1BF /* Thing.swift in Sources */,
 				A4A54F31243FDF700053A1BF /* CTabBarController.swift in Sources */,
 				5F8C8FF4244658A300241B7D /* Fonts.swift in Sources */,
+				A43333532494266D002DE480 /* DownloadsController.swift in Sources */,
 				5F062FBC2450AFCF009B7EA5 /* SectionCell.swift in Sources */,
 				5F27E9D9248ED28800007C3C /* DisasterPageViewController.swift in Sources */,
 				A4A54F37243FE00C0053A1BF /* CViewController.swift in Sources */,
@@ -528,9 +564,12 @@
 				A4AAFFED24736DA100F26664 /* AboutController.swift in Sources */,
 				5FDBDF2D247EE45A001F9130 /* SectionCellSmall.swift in Sources */,
 				5F6277CA245751E100499F40 /* SectionController.swift in Sources */,
+				A433336124942E66002DE480 /* ManagedDownload.swift in Sources */,
 				5F062FB62450A87F009B7EA5 /* SectionsController.swift in Sources */,
 				5F062FBA2450AABB009B7EA5 /* SectionObject.swift in Sources */,
+				A433336324943003002DE480 /* DownloadCell.swift in Sources */,
 				A4A54F39243FE0530053A1BF /* CNavigationController.swift in Sources */,
+				A43333692494496C002DE480 /* TimeAgo.swift in Sources */,
 				5F8C90012446884300241B7D /* CategoryObject.swift in Sources */,
 				5F062FB82450AA75009B7EA5 /* Section.swift in Sources */,
 				5FDBDF29247ED4BF001F9130 /* TableOfContentsController.swift in Sources */,
@@ -543,13 +582,18 @@
 				5F6277C32457454E00499F40 /* LitCell.swift in Sources */,
 				5FCDC6ED2440ECB10065AC50 /* TitleCell.swift in Sources */,
 				A4A54F48243FE1EE0053A1BF /* CCell.swift in Sources */,
+				A4333356249426BF002DE480 /* DownloadsManager.swift in Sources */,
+				A4333367249432F2002DE480 /* OfflineDownload.swift in Sources */,
 				A4A54F41243FE0D50053A1BF /* CTableView.swift in Sources */,
 				A4A54F15243FDEDA0053A1BF /* AppDelegate.swift in Sources */,
 				A4A54F59243FE74A0053A1BF /* SwiftyJSON.swift in Sources */,
+				A4333365249432EB002DE480 /* DownloadCache.swift in Sources */,
 				5F27E9D7248EC0BD00007C3C /* ChooseDisasterController.swift in Sources */,
 				A4A54F46243FE1720053A1BF /* CCellObject.swift in Sources */,
+				A433335B24942A3E002DE480 /* downloads.xcdatamodeld in Sources */,
 				A4A54F5B243FE83C0053A1BF /* Endpoints.swift in Sources */,
 				A4AAFFE6247363CE00F26664 /* SwiftNotice.swift in Sources */,
+				A433335824942770002DE480 /* Reachability.swift in Sources */,
 				A4AAFFE9247363FF00F26664 /* Presenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,6 +806,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A433335924942A3E002DE480 /* downloads.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A433335A24942A3E002DE480 /* downloads.xcdatamodel */,
+			);
+			currentVersion = A433335A24942A3E002DE480 /* downloads.xcdatamodel */;
+			path = downloads.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A4A54F09243FDEDA0053A1BF /* Project object */;
 }

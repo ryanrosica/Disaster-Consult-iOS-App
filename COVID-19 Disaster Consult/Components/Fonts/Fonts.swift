@@ -25,6 +25,9 @@ public struct Fonts {
     static var smallCaption: UIFont {
         return getFont(style: "Regular", fontSize: 12)
     }
+    static var smallBoldCaption: UIFont {
+        return getFont(style: "Bold", fontSize: 12)
+    }
     
     private static func getFont (style: String, fontSize: CGFloat) -> UIFont {
         

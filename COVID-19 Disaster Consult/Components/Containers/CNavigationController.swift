@@ -33,6 +33,13 @@ class CNavigationController: UINavigationController {
     func commonInit() {
         navigationBar.tintColor = UIColor.white
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        if DownloadsManager.shared.isOffline {
+            navigationBar.barTintColor = UIColor.init(red: 255/255, green: 36/255, blue: 63/255, alpha: 1.0)
+        } else {
+            navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
+        }
+        
     }
     
 }

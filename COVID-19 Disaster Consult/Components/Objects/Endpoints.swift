@@ -18,6 +18,10 @@ struct Endpoints {
         return "/api/v1\(endpoint)"
     }
     
+    static func download(site: String) -> String {
+        return "/\(site)/api/v1/download"
+    }
+    
     static func links() -> String {
         return site_api("/links")
     }
