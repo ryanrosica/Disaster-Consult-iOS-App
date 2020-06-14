@@ -33,7 +33,7 @@ public struct Fonts {
         return font.pointSize
     }
     static var headerSize: CGFloat {
-        let font = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .title2)
+        let font = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .title1)
         return font.pointSize
     }
     
