@@ -17,7 +17,7 @@ public struct Fonts {
         return getFont(style: "Regular", textStyle: .body)
     }
     static var header: UIFont {
-        return getFont(style: "ExtraBold", textStyle: .largeTitle)
+        return getFont(style: "ExtraBold", textStyle: .title1)
     }
     static var smallTitle: UIFont {
         return getFont(style: "Bold", textStyle: .body)

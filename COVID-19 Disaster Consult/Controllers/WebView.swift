@@ -30,6 +30,7 @@ class WebView: UIViewController {
             tableOfcontentsButton.setTitleColor(UIColor.black, for: .normal)
 
             tableOfcontentsButton.setTitle("Table Of Contents ☰", for: .normal)
+            tableOfcontentsButton.titleLabel?.font = Fonts.caption
             tableOfcontentsButton.accessibilityLabel = "Table of Contents"
             tableOfcontentsButton.addTarget(self, action: #selector(contentsPressed), for: .touchUpInside)
             
