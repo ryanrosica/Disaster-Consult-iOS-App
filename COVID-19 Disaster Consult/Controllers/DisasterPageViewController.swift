@@ -25,7 +25,11 @@ class DisasterPageViewController: CTableViewController {
         } else {
             titleLabel.text = "\(Session.shared.site?.title ?? "") 🔽"
         }
+        titleLabel.accessibilityLabel = "Switch Disaster"
+        titleLabel.accessibilityValue = Session.shared.site?.title
         self.navigationItem.titleView = titleLabel
+        
+        
         let tap = UITapGestureRecognizer(target:self,action:#selector(self.changeDisaster))
         titleLabel.addGestureRecognizer(tap)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

@@ -26,6 +26,7 @@ class DisasterTabBarController: CTabBarController {
         button.setImage(#imageLiteral(resourceName: "icons8-feedback-30"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.accessibilityLabel = "Leave Feedback"
         return button
     }()
     

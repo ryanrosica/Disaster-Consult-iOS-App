@@ -35,8 +35,7 @@ class TableOfContentsController: CTableViewController {
     override func viewDidLayoutSubviews() {
           super.viewDidLayoutSubviews()
           navigationController?.navigationBar.isTranslucent = false
-          navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
-            navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 
           //self.title = "Disaster Consult | COVID- 19"
       }

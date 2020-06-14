@@ -30,6 +30,7 @@ class WebView: UIViewController {
             tableOfcontentsButton.setTitleColor(UIColor.black, for: .normal)
 
             tableOfcontentsButton.setTitle("Table Of Contents ☰", for: .normal)
+            tableOfcontentsButton.accessibilityLabel = "Table of Contents"
             tableOfcontentsButton.addTarget(self, action: #selector(contentsPressed), for: .touchUpInside)
             
             self.view.addSubview(tableOfcontentsButton)
@@ -60,9 +61,14 @@ class WebView: UIViewController {
     override func loadView() {
         if let htmlFile = Bundle.main.path(forResource: "html", ofType: "html") {
             if var htmlString: String = try? String(contentsOfFile: htmlFile, encoding: String.Encoding.utf8) {
+                if (!tableOfContentsVisible) {
+                    htmlString = htmlString.replacingOccurrences(of: "<br>", with: "")
+                }
                 htmlString = htmlString.replacingOccurrences(of: "INSERT_TITLE", with: pageTitle)
                 htmlString = htmlString.replacingOccurrences(of: "INSERT_BODY", with: html)
-                
+                htmlString = htmlString.replacingOccurrences(of: "BODY_SIZE", with: "\(Fonts.bodySize)px")
+                htmlString = htmlString.replacingOccurrences(of: "HEADER_SIZE", with: "\(Fonts.headerSize)px")
+
                 webView.loadHTMLString(htmlString, baseURL: nil)
             }
         }

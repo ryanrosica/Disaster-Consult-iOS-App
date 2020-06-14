@@ -29,7 +29,6 @@ class ChooseDisasterController: CTableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {
