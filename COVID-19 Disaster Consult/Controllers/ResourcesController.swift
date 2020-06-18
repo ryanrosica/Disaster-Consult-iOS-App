@@ -14,6 +14,7 @@ class ResourcesController: DisasterPageViewController {
         super.init()
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
+        self.tabBarItem.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
         self.title = "Resources"
         
     }

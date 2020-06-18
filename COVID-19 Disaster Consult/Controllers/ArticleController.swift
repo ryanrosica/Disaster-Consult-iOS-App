@@ -21,12 +21,22 @@ class ArticleController: DisasterPageViewController {
     var page: String? = nil
     var reloading: Bool = false
     
-    init(endpoint: String, dataJSONType: String, title: String, cellType: AnyClass, seperators: Bool) {
+    init(endpoint: String, dataJSONType: String, title: String, cellType: AnyClass, seperators: Bool, tabTitle: String) {
         self.endpoint = endpoint
         self.dataJSONType = dataJSONType
         self.cellType = cellType
         self.viewTitle = title
         super.init()
+        
+        self.title = tabTitle
+
+        if (self.viewTitle == "Latest News") {
+            self.tabBarItem.image = #imageLiteral(resourceName: "icons8-news-30")
+        }
+        else {
+            self.tabBarItem.image = #imageLiteral(resourceName: "icons8-literature-30")
+        }
+
 
         tableView.setDelegate(self)
         if(!seperators) {

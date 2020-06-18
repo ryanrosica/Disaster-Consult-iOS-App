@@ -151,16 +151,14 @@ class DisasterTabBarController: CTabBarController {
         
         selectDisasterButton.titleLabel.text = self.site?.title ?? ""
         
-        let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false)
+        let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false, tabTitle: "News")
         
-        homeController.title = "Disaster Consult | \(site.title)"
         let newsNav: CNavigationController = CNavigationController.init(rootViewController: homeController)
         newsNav.navigationBar.barStyle = .black
         newsNav.navigationBar.tintColor = .white
         newsNav.title = "News"
         
-        let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true)
-        litController.title = "Disaster Consult | \(site.title)"
+        let litController = ArticleController.init(endpoint: Endpoints.literature(), dataJSONType: "literature", title: "Latest Literature", cellType: LitCell.self, seperators: true, tabTitle: "Literature")
         let litNav: CNavigationController = CNavigationController.init(rootViewController: litController)
         litNav.navigationBar.barStyle = .black
         litNav.navigationBar.tintColor = .white
@@ -171,7 +169,6 @@ class DisasterTabBarController: CTabBarController {
         let resourcesNav: CNavigationController = CNavigationController.init(rootViewController: ResourcesController())
         resourcesNav.navigationBar.barStyle = .black
         resourcesNav.navigationBar.tintColor = .white
-        resourcesNav.title = "Disaster Consult | \(site.title)"
         resourcesNav.title = "Resources"
         
         let downloadNav: CNavigationController = CNavigationController.init(rootViewController: DownloadsController())
@@ -197,18 +194,10 @@ class DisasterTabBarController: CTabBarController {
                 self.setViewControllers([resourcesNav, newsNav, downloadNav, aboutNav], animated: true)
                 
             }
-            
-            if let tab = self.tabBar.items?[1]{
-                tab.image = #imageLiteral(resourceName: "icons8-news-30")
-            }
-            if let tab = self.tabBar.items?[2]{
-                tab.image = #imageLiteral(resourceName: "icons8-literature-30")
-            }
+
         }
         
-        if let tab = self.tabBar.items?[0]{
-            tab.image = #imageLiteral(resourceName: "icons8-opened-folder-30")
-        }
+
         
     }
     
