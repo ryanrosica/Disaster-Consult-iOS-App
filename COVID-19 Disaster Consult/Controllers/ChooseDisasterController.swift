@@ -11,12 +11,18 @@ import PromiseKit
 
 class ChooseDisasterController: CTableViewController {
     var completionHandler: ((Site) -> Void)?
+    
     init(completionHandler: ((Site) -> Void)? = nil) {
         self.completionHandler = completionHandler
         super.init(tableView: BTableView.init(style: .plain))
         tableView.setDelegate(self)
         tableView.separatorStyle = .none
+        
+        tableView.data.append(Array())
+        tableView.data.append(Array())
+
         fetch()
+        fetchDownloads()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,12 +63,30 @@ class ChooseDisasterController: CTableViewController {
 
             sites.insert(TitleObject(title: "Choose a Disaster"), at: 0)
  
-            self.tableView.data = [sites]
+            self.tableView.data[0] = sites
             self.tableView.reloadData()
             
         }.catch { error in
             print(error)
         }
+    }
+    
+    func fetchDownloads() {
+        DownloadsManager.shared.fetchDownloads { (downloads) in
+            var downloadsObjs: [CCellObject] = [CCellObject]()
+            downloadsObjs.insert(TitleObject(title: "Offline Downloads"), at: 0)
+            
+            for download in downloads ?? [ManagedDownload]() {
+                downloadsObjs.append(OfflineDownload.init(managed: download))
+            }
+            
+            if downloads?.count ?? 0 > 0 {
+                self.tableView.data[1] = downloadsObjs
+                self.tableView.reloadData()
+            }
+        }
+        
+       
     }
 }
 
@@ -70,7 +94,7 @@ class ChooseDisasterController: CTableViewController {
 extension ChooseDisasterController: CTableViewDelegate {
     
     func cellTypes() -> [AnyClass] {
-        return [TitleCell.self, CategoryCell.self]
+        return [TitleCell.self, CategoryCell.self, DownloadCell.self]
     }
     
     func cell(indexPath: IndexPath) -> UITableViewCell? {
@@ -78,6 +102,15 @@ extension ChooseDisasterController: CTableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let object: OfflineDownload = self.tableView.data.item(indexPath: indexPath) as? OfflineDownload {
+            self.dismiss(animated: true) {
+                DownloadsManager.shared.setOffline(download: object)
+            }
+            return
+        }
+        
+        
         if let cell = tableView.cellForRow(at: indexPath) as? CategoryCell {
             cell.titleLbl.backgroundColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
             cell.titleLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
