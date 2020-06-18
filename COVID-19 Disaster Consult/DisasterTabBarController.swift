@@ -9,6 +9,82 @@
 import UIKit
 import PromiseKit
 
+class SelectDisasterButton: UIControl {
+    
+    let titleLabel: UILabel = {
+        let lbl: UILabel = UILabel.init()
+        lbl.font = Fonts.provideFont(size: 18, style: "ExtraBold")
+        lbl.textColor = UIColor.white
+        lbl.text = "----"
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.minimumScaleFactor = 0.5
+        return lbl
+    }()
+    
+    let subtitleLabel: UILabel = {
+        let lbl: UILabel = UILabel.init()
+        lbl.font = Fonts.provideFont(size: 14, style: "Regular")
+        lbl.textColor = UIColor.white
+        lbl.text = "Tap to change"
+        return lbl
+    }()
+    
+    var stackView: UIStackView!
+    
+    init() {
+        super.init(frame: CGRect.zero)
+        
+        isUserInteractionEnabled = true
+        backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        
+        stackView = UIStackView.init(arrangedSubviews: [titleLabel, subtitleLabel])
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        addSubview(stackView)
+        
+        layer.cornerRadius = 8.0
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.2
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.1) {
+            self.alpha = 0.5
+            
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.1) {
+            self.alpha = 1.0
+        }
+        if self.bounds.contains((touches.first?.location(in: self))!) {
+            sendActions(for: .touchUpInside)
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.1) {
+            self.alpha = 1.0
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        stackView.frame = CGRect.init(x: 16, y: 8, width: bounds.width - 32, height: bounds.height - 16)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 class DisasterTabBarController: CTabBarController {
     
     let floatingButton: UIButton = {
@@ -30,14 +106,20 @@ class DisasterTabBarController: CTabBarController {
         return button
     }()
     
+    let selectDisasterButton: SelectDisasterButton = {
+        let select: SelectDisasterButton = SelectDisasterButton.init()
+        return select
+    }()
+    
     var site: Site?
     static let buttonWidth: CGFloat = 55
     var firstOpen: Bool = true
-
+    
     override init() {
         super.init()
         self.setViewControllers([LoadingViewController()], animated: true)
         
+        selectDisasterButton.addTarget(self, action: #selector(selectDisaster), for: .touchUpInside)
         
         NotificationCenter.default.addObserver(
             self,
@@ -66,6 +148,8 @@ class DisasterTabBarController: CTabBarController {
             self.selectDisaster()
             return
         }
+        
+        selectDisasterButton.titleLabel.text = self.site?.title ?? ""
         
         let homeController = ArticleController.init(endpoint: Endpoints.links(), dataJSONType: "links", title: "Latest News", cellType: NewsCell.self, seperators: false)
         
@@ -111,7 +195,7 @@ class DisasterTabBarController: CTabBarController {
             }
             else {
                 self.setViewControllers([resourcesNav, newsNav, downloadNav, aboutNav], animated: true)
-
+                
             }
             
             if let tab = self.tabBar.items?[1]{
@@ -157,66 +241,13 @@ class DisasterTabBarController: CTabBarController {
         self.present(nav, animated: true, completion: nil)
     }
     
-    
-    
-    
-    /*
-     func choose() {
-         loadViews()
-     }
-    func fetchSite(completion: @escaping () -> Void) {
-        guard let slug = UserDefaults.standard.string(forKey: "slug") else {
-            let chooseDisasterController = ChooseDisasterController { site in
-                UserDefaults.standard.set(site.slug, forKey: "slug")
-                self.site = site
-                completion()
-            }
-
-            let navigationController = CNavigationController(rootViewController: chooseDisasterController)
-            navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.1468381584, green: 0.2079161704, blue: 0.2486139238, alpha: 1)
-            navigationController.navigationBar.barStyle = .black
-            navigationController.navigationBar.tintColor = .white
-            
-            self.setViewControllers([navigationController], animated: true)
-
-            return
-            
-        }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
+        selectDisasterButton.frame = CGRect.init(x: 16, y: self.view.frame.height - self.tabBar.frame.height - 16 - DisasterTabBarController.buttonWidth, width: self.view.frame.width * 0.4, height: DisasterTabBarController.buttonWidth)
+        floatingButton.frame = CGRect.init(x: self.view.frame.width - DisasterTabBarController.buttonWidth - 16, y: self.view.frame.height - self.tabBar.frame.height - 16 - DisasterTabBarController.buttonWidth, width: DisasterTabBarController.buttonWidth, height: DisasterTabBarController.buttonWidth)
         
-        
-        guard let request: URLRequest = Session.makeUrlRequest(endpoint: "", method: .GET, site: slug) else {
-            return
-            
-        }
-        
-        firstly {
-            URLSession.shared.dataTask(.promise, with: request).validate()
-        }.map {
-            try JSON.init(data: $0.data)
-        }.done { json in
-            let data: JSON = json["site"]
-            self.site = Site(json: data)
-            completion()
-        
-        }
-        .catch { error in
-            print(error)
-        }
-        
-        
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
-        
-    }*/
+    }
 }
 
 extension DisasterTabBarController {
@@ -234,14 +265,16 @@ extension DisasterTabBarController {
         
         super.viewDidLoad()
         self.view.insertSubview(floatingButton, belowSubview: self.tabBar)
+        self.view.insertSubview(selectDisasterButton, belowSubview: self.tabBar)
         
-        floatingButton.translatesAutoresizingMaskIntoConstraints = false
-        floatingButton.snp.makeConstraints { maker in
-            maker.height.equalTo(DisasterTabBarController.buttonWidth)
-            maker.width.equalTo(DisasterTabBarController.buttonWidth)
-            maker.right.equalTo(self.view).inset(16)
-            maker.bottom.equalTo(self.tabBar.snp.top).inset(-10)
-        }
+        
+        /*floatingButton.translatesAutoresizingMaskIntoConstraints = false
+         floatingButton.snp.makeConstraints { maker in
+         maker.height.equalTo(DisasterTabBarController.buttonWidth)
+         maker.width.equalTo(DisasterTabBarController.buttonWidth)
+         maker.right.equalTo(self.view).inset(16)
+         maker.bottom.equalTo(self.tabBar.snp.top).inset(-10)
+         }*/
     }
-
+    
 }

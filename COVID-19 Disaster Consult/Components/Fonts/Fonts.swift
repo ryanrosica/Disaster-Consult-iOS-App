@@ -50,5 +50,15 @@ public struct Fonts {
         }
         return customFont
     }
+    
+    static func provideFont(size: CGFloat, style: String) -> UIFont {
+        guard let customFont = UIFont(name: "\(family)-\(style)", size: size) else {
+            fatalError("""
+                Failed to load font.
+                """
+            )
+        }
+        return customFont
+    }
 
 }

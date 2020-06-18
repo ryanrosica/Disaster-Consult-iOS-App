@@ -36,8 +36,8 @@ class DisasterPageViewController: CTableViewController {
         
         background.clipsToBounds = true
         background.layer.cornerRadius = 10
-        background.layer.borderWidth = 2
-        background.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        //background.layer.borderWidth = 2
+        //background.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 
         stackView = UIStackView.init(arrangedSubviews: [titleLabel, downArrowLabel])
         stackView.axis = .horizontal
