@@ -61,6 +61,7 @@ class DisasterTabBarController: CTabBarController {
     }
     
     @objc func loadViews() {
+        
         guard let site = self.site else {
             self.selectDisaster()
             return
@@ -105,7 +106,13 @@ class DisasterTabBarController: CTabBarController {
         if DownloadsManager.shared.isOffline {
             self.setViewControllers([resourcesNav, downloadNav, aboutNav], animated: true)
         } else {
-            self.setViewControllers([resourcesNav, newsNav, litNav, downloadNav, aboutNav], animated: true)
+            if(site.hasLiterature) {
+                self.setViewControllers([resourcesNav, newsNav, litNav, downloadNav, aboutNav], animated: true)
+            }
+            else {
+                self.setViewControllers([resourcesNav, newsNav, downloadNav, aboutNav], animated: true)
+
+            }
             
             if let tab = self.tabBar.items?[1]{
                 tab.image = #imageLiteral(resourceName: "icons8-news-30")
