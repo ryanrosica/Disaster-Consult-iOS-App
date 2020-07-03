@@ -188,10 +188,10 @@ class DisasterTabBarController: CTabBarController {
             self.setViewControllers([resourcesNav, downloadNav, aboutNav], animated: true)
         } else {
             if(site.hasLiterature) {
-                self.setViewControllers([resourcesNav, newsNav, litNav, downloadNav, aboutNav], animated: true)
+                self.setViewControllers([resourcesNav, litNav, downloadNav, aboutNav], animated: true)
             }
             else {
-                self.setViewControllers([resourcesNav, newsNav, downloadNav, aboutNav], animated: true)
+                self.setViewControllers([resourcesNav, downloadNav, aboutNav], animated: true)
                 
             }
 

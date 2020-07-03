@@ -29,20 +29,17 @@ class DisasterPageViewController: CTableViewController {
         return lbl
     }()
 
-    let background = UIView()
-    let stackView: UIStackView
+    let logoView = UIImageView()
     
     init(style: UITableView.Style = .plain) {
-        
-        background.clipsToBounds = true
-        background.layer.cornerRadius = 10
+        logoView.contentMode = .scaleAspectFill
+        logoView.clipsToBounds = true
+        logoView.layer.cornerRadius = 10
+        logoView.image = #imageLiteral(resourceName: "Icon")
         //background.layer.borderWidth = 2
         //background.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 
-        stackView = UIStackView.init(arrangedSubviews: [titleLabel, downArrowLabel])
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.spacing = 3
+
         
         
         super.init(tableView: BTableView.init(style: style))
@@ -53,8 +50,7 @@ class DisasterPageViewController: CTableViewController {
         }
         titleLabel.accessibilityLabel = "Switch Disaster"
         titleLabel.accessibilityValue = Session.shared.site?.title
-        background.addSubview(stackView)
-        self.navigationItem.titleView = background
+        self.navigationItem.titleView = logoView
         
         updateViewConstraints()
         
@@ -68,11 +64,10 @@ class DisasterPageViewController: CTableViewController {
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        stackView.snp.makeConstraints { (maker) in
-            maker.left.equalTo(background).inset(6)
-            maker.top.equalTo(background).inset(2)
-            maker.right.equalTo(background).inset(6)
-            maker.bottom.equalTo(background).inset(2)
+        logoView.snp.makeConstraints { (maker) in
+            maker.height.equalTo(35)
+            maker.width.equalTo(35)
+
         }
     }
     
