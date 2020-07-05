@@ -14,13 +14,14 @@ struct Site {
     public var slug: String
     public var description: String
     public var hasLiterature: Bool
-    
+    public var hasNews: Bool
     public init(json: JSON) {
         self.id = json["id"].string ?? ""
         self.title = json["title"].string ?? ""
         self.description = json["description"].string ?? ""
         self.slug = json["slug"].string ?? ""
         self.hasLiterature = json["has_literature"].bool ?? false
+        self.hasNews = json["has_news"].bool ?? false
 
     }
 }

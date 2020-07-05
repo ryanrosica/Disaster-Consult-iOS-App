@@ -187,13 +187,16 @@ class DisasterTabBarController: CTabBarController {
         if DownloadsManager.shared.isOffline {
             self.setViewControllers([resourcesNav, downloadNav, aboutNav], animated: true)
         } else {
+            var controllers = [resourcesNav]
             if(site.hasLiterature) {
-                self.setViewControllers([resourcesNav, litNav, downloadNav, aboutNav], animated: true)
+                controllers.append(litNav)
             }
-            else {
-                self.setViewControllers([resourcesNav, downloadNav, aboutNav], animated: true)
-                
+            if(site.hasNews) {
+                controllers.append(newsNav)
             }
+            controllers += [downloadNav, aboutNav]
+            self.setViewControllers(controllers, animated: true)
+
 
         }
         
