@@ -49,6 +49,8 @@
 		5FCDC6ED2440ECB10065AC50 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */; };
 		5FDBDF29247ED4BF001F9130 /* TableOfContentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDBDF28247ED4BF001F9130 /* TableOfContentsController.swift */; };
 		5FDBDF2D247EE45A001F9130 /* SectionCellSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDBDF2C247EE45A001F9130 /* SectionCellSmall.swift */; };
+		5FFD9F5324D5B1EB00D5FE71 /* OldDownloadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFD9F5224D5B1EB00D5FE71 /* OldDownloadCell.swift */; };
+		5FFD9F5524D5B34500D5FE71 /* OldDownloadObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFD9F5424D5B34500D5FE71 /* OldDownloadObject.swift */; };
 		A42CED68243FEB37006553D2 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CED67243FEB37006553D2 /* HTTPMethod.swift */; };
 		A42CED6B243FEDC2006553D2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F5E243FE9D20053A1BF /* Kingfisher.framework */; };
 		A42CED6C243FEDC2006553D2 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4A54F5E243FE9D20053A1BF /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -157,6 +159,8 @@
 		5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		5FDBDF28247ED4BF001F9130 /* TableOfContentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfContentsController.swift; sourceTree = "<group>"; };
 		5FDBDF2C247EE45A001F9130 /* SectionCellSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCellSmall.swift; sourceTree = "<group>"; };
+		5FFD9F5224D5B1EB00D5FE71 /* OldDownloadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldDownloadCell.swift; sourceTree = "<group>"; };
+		5FFD9F5424D5B34500D5FE71 /* OldDownloadObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldDownloadObject.swift; sourceTree = "<group>"; };
 		A42CED67243FEB37006553D2 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A42CED69243FED13006553D2 /* PMKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKFoundation.framework; path = Carthage/Build/iOS/PMKFoundation.framework; sourceTree = SOURCE_ROOT; };
 		A43333522494266D002DE480 /* DownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				A4A54F5C243FE8A10053A1BF /* LinkObject.swift */,
 				5F27E9DC248ED51300007C3C /* SiteObject.swift */,
 				5F8C8FFC2446821400241B7D /* TitleObject.swift */,
+				5FFD9F5424D5B34500D5FE71 /* OldDownloadObject.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				5F8C90022446894F00241B7D /* CategoryCell.swift */,
 				5F062FBB2450AFCF009B7EA5 /* SectionCell.swift */,
 				5FDBDF2C247EE45A001F9130 /* SectionCellSmall.swift */,
+				5FFD9F5224D5B1EB00D5FE71 /* OldDownloadCell.swift */,
 				A4A54F4B243FE2DC0053A1BF /* NewsCell.swift */,
 				5F6277C22457454E00499F40 /* LitCell.swift */,
 				5FCDC6EC2440ECB10065AC50 /* TitleCell.swift */,
@@ -542,12 +548,14 @@
 				A4A54F56243FE69C0053A1BF /* Thing.swift in Sources */,
 				A4A54F31243FDF700053A1BF /* CTabBarController.swift in Sources */,
 				5F8C8FF4244658A300241B7D /* Fonts.swift in Sources */,
+				5FFD9F5324D5B1EB00D5FE71 /* OldDownloadCell.swift in Sources */,
 				A43333532494266D002DE480 /* DownloadsController.swift in Sources */,
 				5F062FBC2450AFCF009B7EA5 /* SectionCell.swift in Sources */,
 				5F27E9D9248ED28800007C3C /* DisasterPageViewController.swift in Sources */,
 				A4A54F37243FE00C0053A1BF /* CViewController.swift in Sources */,
 				A4A54F5D243FE8A10053A1BF /* LinkObject.swift in Sources */,
 				5F27E9DD248ED51300007C3C /* SiteObject.swift in Sources */,
+				5FFD9F5524D5B34500D5FE71 /* OldDownloadObject.swift in Sources */,
 				5F6277CE2457741D00499F40 /* HeaderCell.swift in Sources */,
 				A4AAFFEF24736F9D00F26664 /* TextCell.swift in Sources */,
 				5F8C8FFD2446821400241B7D /* TitleObject.swift in Sources */,

@@ -22,6 +22,5 @@ struct Site {
         self.slug = json["slug"].string ?? ""
         self.hasLiterature = json["has_literature"].bool ?? false
         self.hasNews = json["has_news"].bool ?? false
-
     }
 }

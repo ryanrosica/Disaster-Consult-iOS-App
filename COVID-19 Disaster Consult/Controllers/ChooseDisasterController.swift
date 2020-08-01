@@ -62,7 +62,8 @@ class ChooseDisasterController: CTableViewController {
             }
 
             sites.insert(TitleObject(title: "Choose a Disaster"), at: 0)
- 
+            
+            
             self.tableView.data[0] = sites
             self.tableView.reloadData()
             
@@ -76,10 +77,24 @@ class ChooseDisasterController: CTableViewController {
             var downloadsObjs: [CCellObject] = [CCellObject]()
             downloadsObjs.insert(TitleObject(title: "Offline Downloads"), at: 0)
             
+            var oldDownload = false
+            
             for download in downloads ?? [ManagedDownload]() {
+                if let created = download.created {
+                    if let difference = Calendar.current.dateComponents([.day], from: created, to: Date()).day {
+                        if difference > 29 {
+                            oldDownload = true
+                        }
+                    }
+                }
+
                 downloadsObjs.append(OfflineDownload.init(managed: download))
             }
             
+            if oldDownload {
+                downloadsObjs.insert(OldDownloadObject(), at: 1)
+            }
+
             if downloads?.count ?? 0 > 0 {
                 self.tableView.data[1] = downloadsObjs
                 self.tableView.reloadData()
@@ -94,7 +109,7 @@ class ChooseDisasterController: CTableViewController {
 extension ChooseDisasterController: CTableViewDelegate {
     
     func cellTypes() -> [AnyClass] {
-        return [TitleCell.self, CategoryCell.self, DownloadCell.self]
+        return [TitleCell.self, CategoryCell.self, DownloadCell.self, OldDownloadCell.self]
     }
     
     func cell(indexPath: IndexPath) -> UITableViewCell? {
@@ -109,6 +124,11 @@ extension ChooseDisasterController: CTableViewDelegate {
             }
             return
         }
+         
+        if let cell = tableView.cellForRow(at: indexPath) as? OldDownloadCell {
+            self.navigationController?.pushViewController(DownloadsController(), animated: true)
+            return
+        }
         
         
         if let cell = tableView.cellForRow(at: indexPath) as? CategoryCell {
@@ -116,16 +136,16 @@ extension ChooseDisasterController: CTableViewDelegate {
             cell.titleLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            if let site = self.tableView.data[0][indexPath.row] as? SiteObject {
+        if let site = self.tableView.data[indexPath.section][indexPath.row] as? SiteObject {
 
             if let completion = self.completionHandler {
-                   completion(site.site)
-               }
-               self.dismiss(animated: true, completion: nil)
+               completion(site.site)
            }
+            self.dismiss(animated: true, completion: nil)
+
+       }
             
-        }
+        
 
     }
     
